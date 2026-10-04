@@ -8,55 +8,52 @@ import {
   selectVerifiedInvoice,
   waitForIssuedTicket,
 } from '../test/shared/purchase/invoice-api.ts';
-import { createGuestEmail } from '../test/shared/purchase/guest.ts';
 import { adultTicketPurchase } from '../test/shared/purchase/scenario.ts';
+import { purchaseRunDirectory, readPurchaseRunMarker } from '../test/shared/purchase/run-artifacts.ts';
+import {
+  parsePlaywrightAccount,
+  resolveGuestDetails,
+  resolveOrganizerAccount,
+  type AccountValues,
+} from './account-source.ts';
 
-// Local convenience for Playwright account fixtures. A future hosted purchase job
-// needs an environment-backed account source before it can run without that repo.
-// Read only literal fixture values; do not execute Playwright's module or its imports.
+// Local convenience for Playwright account fixtures. Read only literal values;
+// do not execute Playwright's module or its imports.
 const playwrightRepo =
   process.env.PLAYWRIGHT_REPO_PATH ??
   resolve(process.cwd(), '..', '..', 'Showpass', 'repos', 'showpass-playwright');
 const fixturePath = resolve(playwrightRepo, 'fixtures/staticData/venue-users.ts');
-const source = readFileSync(fixturePath, 'utf8');
 
-function readFixture(name: string): Record<string, string> {
-  const body = source.match(new RegExp(`\\b${name}:\\s*\\{([^}]*)\\}`))?.[1];
-  if (!body) throw new Error(`Playwright fixture ${name} was not found.`);
-  const values: Record<string, string> = {};
-  for (const key of ['userEmail', 'userPassword', 'userFirstName', 'userLastName', 'phoneNumber']) {
-    const literal = body.match(new RegExp(`\\b${key}:\\s*(["'])([^"'\\n]*)\\1`));
-    if (literal) values[key] = literal[2];
-  }
-  for (const key of ['userEmail', 'userPassword']) {
-    if (!values[key]) throw new Error(`Playwright fixture ${name} has no literal ${key}.`);
-  }
-  return values;
+function readFixture(name: string): AccountValues {
+  return parsePlaywrightAccount(readFileSync(fixturePath, 'utf8'), name);
 }
 
-const customer = readFixture('customerForSystemGatewayPaymentIntent');
-const organizer = readFixture(adultTicketPurchase.organizerFixture);
+let customerFixture: AccountValues | undefined;
+const customer = () => (customerFixture ??= readFixture('customerForSystemGatewayPaymentIntent'));
+const organizer = resolveOrganizerAccount(process.env, () =>
+  readFixture(adultTicketPurchase.organizerFixture),
+);
 if (process.argv[2] === 'preflight') {
   await listPurchaseInvoices(`qa+appium-preflight-${Date.now()}@example.test`, {
     userEmail: organizer.userEmail,
     userPassword: organizer.userPassword,
   });
-  console.log('Beta invoice read is available to the Playwright Organizer fixture.');
+  console.log('Beta invoice read is available to the Organizer account.');
   process.exit(0);
 }
 if (process.argv[2] === 'recover-public') {
   const runTag = process.argv[3];
-  if (!runTag || !/^appium-\d+$/.test(runTag)) {
-    throw new Error('Pass the exact appium-<timestamp> tag from artifacts/ios-app/purchase/run.json.');
+  if (!runTag) throw new Error('Pass the exact appium-<timestamp> purchase run tag.');
+  const resultPath = purchaseRunDirectory(runTag);
+  const marker = readPurchaseRunMarker(runTag);
+  if (!marker) {
+    throw new Error(`No recovery marker exists for ${runTag}; no purchase can be attributed to this run.`);
   }
   const credentials = { userEmail: organizer.userEmail, userPassword: organizer.userPassword };
-  const guestEmail = createGuestEmail(customer.userEmail, runTag);
-  const invoices = await listPurchaseInvoices(guestEmail, credentials);
-  const invoice = invoices.find((candidate) => candidate.email?.includes(runTag));
-  if (!invoice) throw new Error('The exact Appium run was not found in this Venue.');
+  const invoices = await listPurchaseInvoices(marker.email, credentials);
   const verified = selectVerifiedInvoice(invoices, {
-    email: invoice.email,
-    createdAfter: new Date(0),
+    email: marker.email,
+    createdAfter: new Date(marker.startedAt),
     expectedSource: adultTicketPurchase.expectedPublicSource,
     scenario: adultTicketPurchase,
   });
@@ -64,7 +61,6 @@ if (process.argv[2] === 'recover-public') {
   const items = await getPurchaseItems(verified, credentials);
   assertPurchaseItem(items, adultTicketPurchase);
   await waitForIssuedTicket(verified, credentials, adultTicketPurchase);
-  const resultPath = resolve('artifacts', 'ios-app', 'purchase');
   mkdirSync(resultPath, { recursive: true });
   const result = {
     transactionId: verified.transaction_id,
@@ -86,15 +82,28 @@ if (process.argv[2] === 'recover-public') {
 const spec = {
   discovery: 'ios/explore.discovery.ts',
   'guest-discovery': 'ios/explore.discovery.ts',
+  'organizer-navigation': 'ios/organizer.navigation.ts',
   public: 'ios/public.purchase.ts',
 }[process.argv[2] ?? 'public'];
-if (!spec) throw new Error('Choose preflight, public, discovery, guest-discovery, or recover-public.');
+if (!spec)
+  throw new Error(
+    'Choose preflight, public, discovery, guest-discovery, organizer-navigation, or recover-public.',
+  );
 const guestMode = process.argv[2] === 'guest-discovery' || process.argv[2] === 'public';
 const purchaseMode = process.argv[2] === 'public';
-const guestEmail =
-  process.env.PUBLIC_GUEST_EMAIL ?? createGuestEmail(customer.userEmail, `appium-${Date.now()}`);
+const navigationMode = process.argv[2] === 'organizer-navigation';
+const runTag = process.env.PUBLIC_RUN_TAG ?? `appium-${Date.now()}`;
+const guest = guestMode ? resolveGuestDetails(process.env, runTag, customer) : undefined;
+const sessionArtifacts = purchaseMode
+  ? purchaseRunDirectory(runTag)
+  : navigationMode
+    ? resolve(process.env.APPIUM_ARTIFACT_DIR ?? 'artifacts/ios-app', 'organizer-navigation', 'runs', runTag)
+    : undefined;
 if (purchaseMode) {
-  await listPurchaseInvoices(guestEmail, {
+  if (!guest) throw new Error('Public purchase requires guest details.');
+  console.log(`Purchase run: ${runTag}`);
+  console.log(`Recovery marker and JUnit: ${sessionArtifacts}`);
+  await listPurchaseInvoices(guest.email, {
     userEmail: organizer.userEmail,
     userPassword: organizer.userPassword,
   });
@@ -103,6 +112,7 @@ if (purchaseMode) {
     'Starting the iPhone Appium test. Watch the booted Simulator; wait for the final pass/fail result here.',
   );
 }
+if (navigationMode) console.log(`Organizer navigation JUnit: ${sessionArtifacts}`);
 const child = spawn(
   resolve('node_modules', '.bin', 'wdio'),
   ['run', './wdio.conf.ts', '--spec', `./test/specs/${spec}`],
@@ -112,26 +122,29 @@ const child = spawn(
     env: {
       ...process.env,
       TARGET: 'ios-app',
-      PURCHASE_RUN: '1',
-      RESET_APP: process.env.RESET_APP ?? '1',
-      ...(!guestMode
+      PURCHASE_RUN: navigationMode ? '0' : '1',
+      ORGANIZER_NAVIGATION_RUN: navigationMode ? '1' : '0',
+      RESET_APP: process.env.RESET_APP ?? (navigationMode ? '0' : '1'),
+      ...(sessionArtifacts ? { APPIUM_SESSION_ARTIFACT_DIR: sessionArtifacts } : {}),
+      ...(guestMode ? { PUBLIC_RUN_TAG: runTag } : {}),
+      ...(!guestMode && !navigationMode
         ? {
-            SHOWPASS_CUSTOMER_EMAIL: customer.userEmail,
-            SHOWPASS_CUSTOMER_PASSWORD: customer.userPassword,
+            SHOWPASS_CUSTOMER_EMAIL: customer().userEmail,
+            SHOWPASS_CUSTOMER_PASSWORD: customer().userPassword,
           }
         : {}),
-      ...(purchaseMode
+      ...(purchaseMode || navigationMode
         ? {
             SHOWPASS_ORGANIZER_EMAIL: organizer.userEmail,
             SHOWPASS_ORGANIZER_PASSWORD: organizer.userPassword,
           }
         : {}),
-      ...(guestMode
+      ...(guest
         ? {
             PUBLIC_CHECKOUT_MODE: 'guest',
-            PUBLIC_GUEST_EMAIL: guestEmail,
-            PUBLIC_GUEST_NAME: `${customer.userFirstName} ${customer.userLastName}`,
-            PUBLIC_GUEST_PHONE: customer.phoneNumber,
+            PUBLIC_GUEST_EMAIL: guest.email,
+            PUBLIC_GUEST_NAME: guest.name,
+            PUBLIC_GUEST_PHONE: guest.phone,
           }
         : {}),
     },

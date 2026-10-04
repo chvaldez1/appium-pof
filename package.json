@@ -12,11 +12,16 @@
     "test": "wdio run ./wdio.conf.ts",
     "test:public:dry-run": "DRY_RUN=1 node --import tsx scripts/run-with-playwright-fixtures.ts public",
     "test:public": "node --import tsx scripts/run-with-playwright-fixtures.ts public",
+    "recover:public": "node --import tsx scripts/run-with-playwright-fixtures.ts recover-public",
+    "test:ios:versions": "node --import tsx scripts/run-ios-app-versions.ts",
+    "test:organizer:navigation": "node --import tsx scripts/run-with-playwright-fixtures.ts organizer-navigation",
+    "test:buyer:navigation": "BUYER_NAVIGATION_RUN=1 TARGET=ios-app wdio run ./wdio.conf.ts --spec ./test/specs/ios/buyer.navigation.ts",
+    "test:box-office:entry": "TARGET=ios-app wdio run ./wdio.conf.ts --spec ./test/specs/ios/box-office.discovery.ts",
     "lint": "oxlint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "test:unit": "node --import tsx --test test/shared/purchase/*.test.ts",
+    "test:unit": "node --import tsx --test test/shared/purchase/*.test.ts scripts/*.test.ts",
     "check": "npm run lint && npm run format:check && npm run typecheck && npm run test:unit"
   },
   "devDependencies": {

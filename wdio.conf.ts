@@ -9,6 +9,9 @@ const isAndroid = target.startsWith('android-');
 const isWebView = target.endsWith('-webview');
 const isApp = target.endsWith('-app') || isWebView;
 const purchaseRun = process.env.PURCHASE_RUN === '1';
+const organizerNavigationRun = process.env.ORGANIZER_NAVIGATION_RUN === '1';
+const buyerNavigationRun = process.env.BUYER_NAVIGATION_RUN === '1';
+const sensitiveRun = purchaseRun || organizerNavigationRun || buyerNavigationRun;
 if (!isAndroid && process.platform !== 'darwin') {
   throw new Error(`${target} requires macOS on the Appium host.`);
 }
@@ -16,7 +19,9 @@ const required = (name: string): string => {
   if (!process.env[name]) throw new Error(`Set ${name} before running ${target}.`);
   return process.env[name];
 };
-const output = resolve('artifacts', target);
+const output = resolve(
+  process.env.APPIUM_SESSION_ARTIFACT_DIR ?? process.env.APPIUM_ARTIFACT_DIR ?? `artifacts/${target}`,
+);
 for (const folder of ['appium', 'wdio', 'junit', 'screenshots']) {
   mkdirSync(resolve(output, folder), { recursive: true });
 }
@@ -76,9 +81,10 @@ if (isAndroid && isWebView) {
   capabilities['appium:enableWebviewDetailsCollection'] = true;
 }
 
-const serverArgs: { address: string; useDrivers: string; allowInsecure?: string } = {
+const serverArgs: { address: string; useDrivers: string; logLevel: string; allowInsecure?: string } = {
   address: '127.0.0.1',
   useDrivers: isIOS ? 'xcuitest' : isAndroid ? 'uiautomator2' : 'safari',
+  logLevel: sensitiveRun ? 'error' : 'info',
 };
 if (isAndroid && isWebView) {
   serverArgs.allowInsecure = 'uiautomator2:chromedriver_autodownload';
@@ -92,7 +98,7 @@ export const config: WebdriverIO.Config = {
   specs: [`./test/specs/${isWebView ? 'webview' : isApp ? 'app' : 'safari'}.smoke.ts`],
   capabilities: [capabilities],
   baseUrl: baseURL,
-  logLevel: purchaseRun ? 'error' : 'info',
+  logLevel: sensitiveRun ? 'error' : 'info',
   outputDir: resolve(output, 'wdio'),
   waitforTimeout: timeoutMs.uiNavigation,
   connectionRetryTimeout: timeoutMs.connectionRetry,
@@ -112,18 +118,16 @@ export const config: WebdriverIO.Config = {
             },
           ],
         ],
-  reporters: purchaseRun
-    ? ['spec']
-    : [
-        'spec',
-        [
-          'junit',
-          {
-            outputDir: resolve(output, 'junit'),
-            outputFileFormat: ({ cid }) => `${target}-${cid}.xml`,
-          },
-        ],
-      ],
+  reporters: [
+    'spec',
+    [
+      'junit',
+      {
+        outputDir: resolve(output, 'junit'),
+        outputFileFormat: ({ cid }) => `${target}-${cid}.xml`,
+      },
+    ],
+  ],
   before: async function () {
     writeFileSync(
       resolve(output, 'session.json'),
@@ -141,7 +145,8 @@ export const config: WebdriverIO.Config = {
     );
   },
   afterTest: async function (test, context, { passed }) {
-    if (purchaseRun) return;
+    // These sessions enter card or account details; retain JUnit without command logs or UI captures.
+    if (sensitiveRun) return;
     const name = test.title.replace(/[^a-z0-9-]/gi, '_').slice(0, 90);
     try {
       await browser.saveScreenshot(

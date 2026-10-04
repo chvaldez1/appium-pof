@@ -201,7 +201,9 @@ export async function waitForIssuedTicket(
         scenario.quantity,
         `Expected ${scenario.quantity} issued ${scenario.eventName} ticket(s).`,
       );
-      assert.ok(tickets[0].barcode_string, 'The issued ticket has no barcode.');
+      for (const ticket of tickets) {
+        assert.ok(ticket.barcode_string, 'An issued ticket has no barcode.');
+      }
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, pollIntervalMs.invoice));

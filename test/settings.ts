@@ -25,6 +25,7 @@ export const timeoutMs = {
   mochaSmoke: 240_000,
   mochaPurchase: 600_000,
   simulatorCommand: 300_000,
+  iosMatrixRun: 600_000,
 } as const;
 
 export const pauseMs = {

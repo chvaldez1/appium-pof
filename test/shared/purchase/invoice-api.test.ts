@@ -4,6 +4,7 @@ import {
   assertPurchaseItem,
   listPurchaseInvoices,
   selectVerifiedInvoice,
+  waitForIssuedTicket,
   type PurchaseInvoice,
 } from './invoice-api.ts';
 import { adultTicketPurchase } from './scenario.ts';
@@ -28,7 +29,7 @@ const query = {
   scenario: adultTicketPurchase,
 };
 
-void test('selects only the unique, recent order in the correct Venue with the correct charge', () => {
+void test('selects only the unique, recent order in the correct Venue with the correct total and card', () => {
   assert.equal(selectVerifiedInvoice([invoice], query), invoice);
   assert.equal(selectVerifiedInvoice([invoice], { ...query, email: 'other@example.test' }), undefined);
   assert.equal(
@@ -104,4 +105,23 @@ void test('reads invoices with the backend exact-email filter', async () => {
     },
   );
   assert.deepEqual(invoices, [invoice]);
+});
+
+void test('requires a barcode for every issued ticket in a multi-ticket scenario', async () => {
+  await assert.rejects(
+    waitForIssuedTicket(
+      invoice,
+      { userEmail: 'organizer@example.test', userPassword: 'test' },
+      { ...adultTicketPurchase, quantity: 2 },
+      async () =>
+        Response.json({
+          ready: true,
+          items: [
+            { event_name: 'Comic Con', barcode_string: 'ticket-one' },
+            { event_name: 'Comic Con', barcode_string: '' },
+          ],
+        }),
+    ),
+    /no barcode/,
+  );
 });

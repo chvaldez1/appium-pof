@@ -1,6 +1,4 @@
 import assert from 'node:assert/strict';
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { $, browser } from '@wdio/globals';
 import { pauseMs, timeoutMs } from '../../../settings.ts';
 import type { Capture } from './types.ts';
@@ -63,16 +61,8 @@ export async function continueGuestToCreditCard({
       timeoutMsg: 'Checkout did not advance to payment',
     });
   } catch (error) {
-    // Captured before card entry, in the local ignored artifacts directory.
-    try {
-      const output = resolve('artifacts', 'ios-app', 'purchase');
-      mkdirSync(output, { recursive: true });
-      writeFileSync(resolve(output, 'guest-payment-step-failure.xml'), await browser.getPageSource());
-      await browser.saveScreenshot(resolve(output, 'guest-payment-step-failure.png'));
-    } catch {
-      /* Preserve the checkout failure when diagnostics are unavailable. */
-    }
-    throw error;
+    // This view contains the guest's name, email, and phone. Keep it out of artifacts.
+    throw new Error('Guest checkout did not advance to payment; no payment was submitted.', { cause: error });
   }
   await capture('guest-payment-empty');
   const terms = await $(

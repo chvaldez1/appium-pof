@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { preparePublicPurchase } from '../../flows/ios/buyer/public-purchase.ts';
 import {
@@ -10,6 +10,7 @@ import {
   waitForVerifiedInvoice,
 } from '../../shared/purchase/invoice-api.ts';
 import { adultTicketPurchase, assertRateCard } from '../../shared/purchase/scenario.ts';
+import { purchaseRunDirectory } from '../../shared/purchase/run-artifacts.ts';
 import { invoiceSearchLookbackMs } from '../../settings.ts';
 
 describe('Comic Con public purchase in the beta iPhone app', () => {
@@ -38,7 +39,12 @@ describe('Comic Con public purchase in the beta iPhone app', () => {
         'Use a fresh guest email so this test can identify one new order.',
       );
 
-      const output = resolve('artifacts', 'ios-app', 'purchase');
+      const runTag = process.env.PUBLIC_RUN_TAG ?? `appium-${Date.now()}`;
+      const output = purchaseRunDirectory(runTag);
+      assert.ok(
+        !existsSync(resolve(output, 'run.json')),
+        `Purchase run ${runTag} already exists. Recover that run before starting another payment.`,
+      );
       mkdirSync(output, { recursive: true });
       const prepared = await preparePublicPurchase({ name, email, phone }, scenario);
       if (process.env.DRY_RUN === '1') return;
@@ -46,7 +52,7 @@ describe('Comic Con public purchase in the beta iPhone app', () => {
       // Kept locally even if payment succeeds but later UI/API verification fails.
       writeFileSync(
         resolve(output, 'run.json'),
-        JSON.stringify({ email, startedAt: createdAfter.toISOString() }, null, 2),
+        JSON.stringify({ runTag, email, startedAt: createdAfter.toISOString() }, null, 2),
       );
       const { transactionId, checkoutError } = await prepared.submitOnce();
       const invoice = await waitForVerifiedInvoice({

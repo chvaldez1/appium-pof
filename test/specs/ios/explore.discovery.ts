@@ -1,12 +1,10 @@
-import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { $, browser } from '@wdio/globals';
-import { contextId } from '../../shared/helpers/context-id.ts';
 import { checkoutStepText, continueGuestToCreditCard } from '../../screens/ios/buyer/checkout.ts';
-import { openComicConCheckout } from '../../screens/ios/buyer/explore.ts';
+import { openEventCheckout } from '../../screens/ios/buyer/explore.ts';
 import { adultTicketPurchase } from '../../shared/purchase/scenario.ts';
-import { pauseMs, target, timeoutMs } from '../../settings.ts';
+import { target, timeoutMs } from '../../settings.ts';
 
 const output = resolve('artifacts', target, 'discovery');
 
@@ -18,7 +16,7 @@ async function capture(name: string) {
 
 describe('Public event discovery', () => {
   it('opens Comic Con from native search', async () => {
-    const webview = await openComicConCheckout({
+    const webview = await openEventCheckout({
       scenario: adultTicketPurchase,
       capture,
       onEventWebview: async () => {
@@ -37,20 +35,13 @@ describe('Public event discovery', () => {
           guestName: process.env.PUBLIC_GUEST_NAME || 'Appium QA',
           guestEmail: process.env.PUBLIC_GUEST_EMAIL,
           guestPhone: process.env.PUBLIC_GUEST_PHONE,
-          capture,
         });
         const manualAddress = await $('//XCUIElementTypeButton[@name="Enter address manually"]');
         await manualAddress.waitForDisplayed({ timeout: timeoutMs.uiControl });
         await manualAddress.click();
-        await browser.pause(pauseMs.discoveryCapture);
-        await capture('guest-billing-address-empty');
-        const checkoutWebview = (await browser.getContexts())
-          .map(contextId)
-          .find((id) => id?.startsWith('WEBVIEW_'));
-        assert.ok(checkoutWebview, 'Checkout must keep an inspectable WebView');
-        await browser.switchContext(checkoutWebview);
-        writeFileSync(resolve(output, 'guest-billing-address-empty.html'), await browser.getPageSource());
-        await browser.switchContext('NATIVE_APP');
+        await $('//XCUIElementTypeTextField[@name="Address line 1"]').waitForDisplayed({
+          timeout: timeoutMs.uiControl,
+        });
       } else {
         await browser.execute('mobile: swipe', { direction: 'up' });
         const guest = await $('//XCUIElementTypeButton[@name="Continue as guest"]');

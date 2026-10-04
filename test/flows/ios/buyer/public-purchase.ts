@@ -1,6 +1,6 @@
 import { $, browser } from '@wdio/globals';
 import { continueGuestToCreditCard } from '../../../screens/ios/buyer/checkout.ts';
-import { openComicConCheckout } from '../../../screens/ios/buyer/explore.ts';
+import { openEventCheckout } from '../../../screens/ios/buyer/explore.ts';
 import type { PurchaseScenario } from '../../../shared/purchase/scenario.ts';
 import { prepareWebviewPayment } from '../../../shared/webview/buyer/payment.ts';
 
@@ -9,7 +9,7 @@ export async function preparePublicPurchase(
   guest: { name: string; email: string; phone: string },
   scenario: PurchaseScenario,
 ) {
-  const webview = await openComicConCheckout({ scenario });
+  const webview = await openEventCheckout({ scenario });
   await continueGuestToCreditCard({
     webview,
     guestName: guest.name,

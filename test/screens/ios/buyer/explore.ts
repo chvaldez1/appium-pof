@@ -6,12 +6,22 @@ import { appId, pauseMs, timeoutMs } from '../../../settings.ts';
 import { expectedCardTotalText, type PurchaseScenario } from '../../../shared/purchase/scenario.ts';
 import { contextId } from '../../../shared/helpers/context-id.ts';
 import { clickBuyTicketsOnEventPage } from '../../../shared/webview/buyer/event.ts';
+import { currentPurchaseRunDirectory } from '../../../shared/purchase/run-artifacts.ts';
 import type { Capture } from './types.ts';
 
-const ticketPicker = { adultIndex: 0, youthIndex: 1, optionCount: 2, emptyQuantity: '0' } as const;
+const emptyQuantity = '0';
 
-// Native Explore -> event WebView -> native Adult ticket picker.
-export async function openComicConCheckout({
+function xpathLiteral(value: string): string {
+  if (!value.includes("'")) return `'${value}'`;
+  if (!value.includes('"')) return `"${value}"`;
+  return `concat(${value
+    .split("'")
+    .map((part) => `'${part}'`)
+    .join(`, "'", `)})`;
+}
+
+// Native Explore -> event WebView -> native ticket picker.
+export async function openEventCheckout({
   scenario,
   capture = async () => {},
   onEventWebview = async () => {},
@@ -40,7 +50,7 @@ export async function openComicConCheckout({
   await capture('search-result-screen');
 
   const card = await $(
-    '//XCUIElementTypeOther[contains(@name,"banner") and contains(@name,"Comic Con") and @accessible="true"]',
+    `//XCUIElementTypeOther[contains(@name,"banner") and contains(@name,${xpathLiteral(scenario.eventName)}) and @accessible="true"]`,
   );
   await card.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
   await card.click();
@@ -48,7 +58,7 @@ export async function openComicConCheckout({
   await capture('event-open');
   assert.ok((await browser.getPageSource()).includes(scenario.eventName));
   const webview = (await browser.getContexts()).map(contextId).find((id) => id?.startsWith('WEBVIEW_'));
-  assert.ok(webview, 'Comic Con must expose an inspectable WebView');
+  assert.ok(webview, `${scenario.eventName} must expose an inspectable WebView`);
   await browser.switchContext(webview);
   assert.ok((await browser.getUrl()).startsWith(scenario.eventUrl));
   await onEventWebview(webview);
@@ -66,7 +76,7 @@ export async function openComicConCheckout({
       await increment.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
     } catch (error) {
       try {
-        const diagnostics = resolve('artifacts', 'ios-app', 'purchase');
+        const diagnostics = currentPurchaseRunDirectory();
         mkdirSync(diagnostics, { recursive: true });
         await browser.saveScreenshot(resolve(diagnostics, 'ticket-picker-missing.png'));
         writeFileSync(resolve(diagnostics, 'ticket-picker-missing.xml'), await browser.getPageSource());
@@ -77,19 +87,26 @@ export async function openComicConCheckout({
     }
   }
   await capture('ticket-picker');
-  const incrementButtons = await $$('~Increment item quantity');
-  const { adultIndex, youthIndex, optionCount, emptyQuantity } = ticketPicker;
-  assert.equal(incrementButtons.length, optionCount, 'Expected Adult and Youth quantity controls.');
-  const quantities = await $$('~Enter a quantity');
-  assert.equal(
-    await quantities[adultIndex].getValue(),
-    emptyQuantity,
-    'Start with an empty basket; set RESET_APP=1.',
+  const ticketHeader = `//XCUIElementTypeOther[@name=${xpathLiteral(scenario.ticketName)} and XCUIElementTypeStaticText[@name=${xpathLiteral(scenario.ticketName)}]]`;
+  const ticketControls = `${ticketHeader}/following-sibling::XCUIElementTypeOther[.//XCUIElementTypeButton[@name="Increment item quantity"]][1]`;
+  const chosenQuantity = await $(`${ticketControls}//XCUIElementTypeTextField[@name="Enter a quantity"]`);
+  const chosenIncrement = await $(
+    `${ticketControls}//XCUIElementTypeButton[@name="Increment item quantity"]`,
   );
-  await incrementButtons[adultIndex].click();
-  assert.equal(await quantities[adultIndex].getValue(), String(scenario.quantity));
-  assert.equal(await quantities[youthIndex].getValue(), emptyQuantity);
-  await capture('adult-selected');
+  await chosenIncrement.waitForDisplayed({ timeout: timeoutMs.uiControl });
+  const quantities = await $$('~Enter a quantity');
+  assert.ok((await quantities.length) > 0, 'No ticket quantity controls were shown.');
+  for (const quantity of quantities) {
+    assert.equal(await quantity.getValue(), emptyQuantity, 'Start with an empty basket; set RESET_APP=1.');
+  }
+  for (let count = 0; count < scenario.quantity; count += 1) await chosenIncrement.click();
+  assert.equal(await chosenQuantity.getValue(), String(scenario.quantity));
+  let selectedTotal = 0;
+  for (const quantity of await $$('~Enter a quantity')) {
+    selectedTotal += Number(await quantity.getValue());
+  }
+  assert.equal(selectedTotal, scenario.quantity, 'Only the chosen ticket type should be selected.');
+  await capture('ticket-selected');
   const checkout = await $('//XCUIElementTypeButton[starts-with(@name,"Checkout")]');
   await checkout.waitForEnabled({ timeout: timeoutMs.uiNavigation });
   await checkout.click();

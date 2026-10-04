@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { createGuestEmail } from '../test/shared/purchase/guest.ts';
+import { createGuestEmail } from '@shared/purchase/guest.ts';
 
 export interface AccountValues {
   userEmail: string;

@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
-import { target, baseURL, appId, appiumCommandTimeoutSeconds, timeoutMs } from './test/settings.ts';
-import { verifyIosAppBuild } from './scripts/ios-app-build.ts';
-import { dismissOptionalLocationPrompt } from './test/shared/ios/system-prompts.ts';
+import { target, baseURL, appId, appiumCommandTimeoutSeconds, timeoutMs } from '@config/test-settings.ts';
+import { verifyIosAppBuild } from '@scripts/ios-app-build.ts';
+import { dismissOptionalLocationPrompt } from '@shared/ios/system-prompts.ts';
 
 const targets = ['desktop-safari', 'ios-safari', 'ios-app', 'android-app', 'ios-webview', 'android-webview'];
 if (!targets.includes(target)) throw new Error(`Unknown TARGET: ${target}`);
@@ -101,7 +101,7 @@ export const config: WebdriverIO.Config = {
   port: 4723,
   path: '/',
   maxInstances: 1,
-  specs: [`./test/specs/${isWebView ? 'webview' : isApp ? 'app' : 'safari'}.smoke.ts`],
+  specs: [`./tests/${isWebView ? 'webview' : isApp ? 'app' : 'safari'}.smoke.ts`],
   capabilities: [capabilities],
   baseUrl: baseURL,
   logLevel: sensitiveRun ? 'error' : 'info',

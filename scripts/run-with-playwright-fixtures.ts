@@ -7,15 +7,15 @@ import {
   listPurchaseInvoices,
   selectVerifiedInvoice,
   waitForIssuedTicket,
-} from '../test/shared/purchase/invoice-api.ts';
-import { adultTicketPurchase } from '../test/shared/purchase/scenario.ts';
-import { purchaseRunDirectory, readPurchaseRunMarker } from '../test/shared/purchase/run-artifacts.ts';
+} from '@shared/purchase/invoice-api.ts';
+import { adultTicketPurchase } from '@shared/purchase/scenario.ts';
+import { purchaseRunDirectory, readPurchaseRunMarker } from '@shared/purchase/run-artifacts.ts';
 import {
   parsePlaywrightAccount,
   resolveGuestDetails,
   resolveOrganizerAccount,
   type AccountValues,
-} from './account-source.ts';
+} from '@scripts/account-source.ts';
 
 // Local convenience for Playwright account fixtures. Read only literal values;
 // do not execute Playwright's module or its imports.
@@ -115,7 +115,7 @@ if (purchaseMode) {
 if (navigationMode) console.log(`Organizer navigation JUnit: ${sessionArtifacts}`);
 const child = spawn(
   resolve('node_modules', '.bin', 'wdio'),
-  ['run', './wdio.conf.ts', '--spec', `./test/specs/${spec}`],
+  ['run', './wdio.conf.ts', '--spec', `./tests/${spec}`],
   {
     cwd: process.cwd(),
     stdio: 'inherit',

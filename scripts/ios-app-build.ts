@@ -3,7 +3,7 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { timeoutMs } from '../test/settings.ts';
+import { timeoutMs } from '@config/test-settings.ts';
 
 export type IosAppBuild = { bundleId: string; version: string; build: string };
 

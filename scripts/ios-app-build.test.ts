@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { assertIosAppBuild, expectedIosAppBuild } from './ios-app-build.ts';
+import { assertIosAppBuild, expectedIosAppBuild } from '@scripts/ios-app-build.ts';
 
 void test('accepts the configured iOS beta version and build', () => {
   assert.doesNotThrow(() => assertIosAppBuild(expectedIosAppBuild));

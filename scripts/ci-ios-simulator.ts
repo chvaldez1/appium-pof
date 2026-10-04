@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { appendFileSync } from 'node:fs';
-import { timeoutMs } from '../test/settings.ts';
+import { timeoutMs } from '@config/test-settings.ts';
 
 if (process.env.GITHUB_ACTIONS !== 'true' || !process.env.GITHUB_ENV) {
   throw new Error('This script only creates a simulator on a GitHub Actions runner.');

@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parsePlaywrightAccount, resolveGuestDetails, resolveOrganizerAccount } from './account-source.ts';
+import {
+  parsePlaywrightAccount,
+  resolveGuestDetails,
+  resolveOrganizerAccount,
+} from '@scripts/account-source.ts';
 
 const noFixture = () => {
   throw new Error('The Playwright clone must not be read for an environment-backed job.');

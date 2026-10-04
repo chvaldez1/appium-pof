@@ -8,7 +8,23 @@
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@screens/*": ["./screens/*"],
+      "@flows/*": ["./flows/*"],
+      "@shared/*": ["./shared/*"],
+      "@tests/*": ["./tests/*"],
+      "@config/*": ["./config/*"],
+      "@scripts/*": ["./scripts/*"]
+    }
   },
-  "include": ["wdio.conf.ts", "scripts/**/*.ts", "test/**/*.ts"]
+  "include": [
+    "wdio.conf.ts",
+    "scripts/**/*.ts",
+    "config/**/*.ts",
+    "tests/**/*.ts",
+    "screens/**/*.ts",
+    "flows/**/*.ts",
+    "shared/**/*.ts"
+  ]
 }

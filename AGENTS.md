@@ -2,10 +2,12 @@
 
 ## Code boundaries
 
-- `test/specs/` contains runnable tests. Put a platform-specific journey under `ios/` or `android/`; the root smoke specs are cross-platform or browser setup checks.
-- `test/screens/<platform>/` contains native controls and selectors. Keep `XCUIElementType` selectors in `ios/` and Android selectors in `android/`.
-- `test/flows/<platform>/` joins that platform's screens into a user journey.
-- `test/shared/` contains data, purchase assertions/API reads, helpers, and WebView DOM steps that can run on more than one platform. A WebView is embedded web content inside a native app; switch into its context before calling shared WebView steps.
+- `tests/` contains runnable tests. Put a platform-specific journey under `ios/` or `android/`; the root smoke specs are cross-platform or browser setup checks.
+- `screens/<platform>/` contains native controls and selectors. Keep `XCUIElementType` selectors in `ios/` and Android selectors in `android/`.
+- `flows/<platform>/` joins that platform's screens into a user journey.
+- `screens/webview/` contains WebView page objects shared across platforms. A WebView is embedded web content inside a native app; switch into its context before calling those page objects.
+- `shared/` contains data, purchase assertions/API reads, and helpers. `config/test-settings.ts` contains targets and waits.
+- Use the `@screens/`, `@flows/`, `@shared/`, `@config/`, `@scripts/`, and `@tests/` aliases defined in `tsconfig.json` for internal imports. Do not add deep relative imports or forwarding helper modules to hide paths.
 - Model a screen or WebView as a small, stateless WebdriverIO page object with lazy selector getters and meaningful user actions. Specs assert outcomes, flows coordinate screens and native/WebView contexts, and page objects own their own selectors. Keep credentials, API calls, fixture data, and session lifecycle out of page objects.
 - Move code into `shared/` when its behavior and selectors are actually common. Pass a scenario into shared checks; do not import one Event fixture inside a reusable verifier.
 - Use typed objects for fixed fixtures and a small function for values generated per run. Do not add a factory class for static data.

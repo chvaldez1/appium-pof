@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parseIosMajors, selectIosRuntimes, type SimulatorRuntime } from './ios-simulator-matrix.ts';
+import { parseIosMajors, selectIosRuntimes, type SimulatorRuntime } from '@scripts/ios-simulator-matrix.ts';
 
 const runtime = (version: string, isAvailable = true): SimulatorRuntime => ({
   identifier: `com.apple.CoreSimulator.SimRuntime.iOS-${version.replaceAll('.', '-')}`,

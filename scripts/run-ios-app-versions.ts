@@ -2,9 +2,9 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { timeoutMs } from '../test/settings.ts';
-import { assertIosAppBuild } from './ios-app-build.ts';
-import { parseIosMajors, selectIosRuntimes, type SimulatorRuntime } from './ios-simulator-matrix.ts';
+import { timeoutMs } from '@config/test-settings.ts';
+import { assertIosAppBuild } from '@scripts/ios-app-build.ts';
+import { parseIosMajors, selectIosRuntimes, type SimulatorRuntime } from '@scripts/ios-simulator-matrix.ts';
 
 type SimulatorDevice = {
   udid: string;
@@ -193,7 +193,7 @@ function main(): void {
         const artifactDir = resolve(resultsPath, `ios-${major}`);
         const run = spawnSync(
           resolve(root, 'node_modules/.bin/wdio'),
-          ['run', './wdio.conf.ts', '--spec', './test/specs/app.smoke.ts'],
+          ['run', './wdio.conf.ts', '--spec', './tests/app.smoke.ts'],
           {
             cwd: root,
             stdio: 'inherit',

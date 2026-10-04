@@ -1,6 +1,7 @@
 import { browser } from '@wdio/globals';
 import { openOrganizerDashboard } from '../../flows/ios/organizer/open-dashboard.ts';
-import { openOrganizerDestination, organizerDestinations } from '../../screens/ios/organizer/dashboard.ts';
+import { organizerDashboardPage } from '../../screens/ios/organizer/dashboard.ts';
+import { organizerDestinations } from '../../shared/data/organizer-navigation.ts';
 import { appId } from '../../settings.ts';
 
 describe('iPhone organizer dashboard navigation', () => {
@@ -21,7 +22,7 @@ describe('iPhone organizer dashboard navigation', () => {
 
   for (const destination of organizerDestinations) {
     it(`opens ${destination.tile} and renders its screen`, async () => {
-      await openOrganizerDestination(destination);
+      await organizerDashboardPage.open(destination);
     });
   }
 });

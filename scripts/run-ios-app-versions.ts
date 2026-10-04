@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { timeoutMs } from '../test/settings.ts';
+import { assertIosAppBuild } from './ios-app-build.ts';
 import { parseIosMajors, selectIosRuntimes, type SimulatorRuntime } from './ios-simulator-matrix.ts';
 
 type SimulatorDevice = {
@@ -152,7 +153,9 @@ function main(): void {
 
   const appPath = resolve(root, process.env.APP_PATH ?? 'apps/Showpass-Beta-Simulator.app');
   if (!existsSync(appPath)) throw new Error(`Set APP_PATH to a beta simulator .app: ${appPath}`);
-  const { bundleId } = appIdentity(appPath);
+  const appBuild = appIdentity(appPath);
+  assertIosAppBuild(appBuild);
+  const { bundleId } = appBuild;
   const devices = selected.map(({ major, runtime }) => ({
     major,
     runtime,

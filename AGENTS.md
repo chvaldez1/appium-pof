@@ -6,6 +6,7 @@
 - `test/screens/<platform>/` contains native controls and selectors. Keep `XCUIElementType` selectors in `ios/` and Android selectors in `android/`.
 - `test/flows/<platform>/` joins that platform's screens into a user journey.
 - `test/shared/` contains data, purchase assertions/API reads, helpers, and WebView DOM steps that can run on more than one platform. A WebView is embedded web content inside a native app; switch into its context before calling shared WebView steps.
+- Model a screen or WebView as a small, stateless WebdriverIO page object with lazy selector getters and meaningful user actions. Specs assert outcomes, flows coordinate screens and native/WebView contexts, and page objects own their own selectors. Keep credentials, API calls, fixture data, and session lifecycle out of page objects.
 - Move code into `shared/` when its behavior and selectors are actually common. Pass a scenario into shared checks; do not import one Event fixture inside a reusable verifier.
 - Use typed objects for fixed fixtures and a small function for values generated per run. Do not add a factory class for static data.
 

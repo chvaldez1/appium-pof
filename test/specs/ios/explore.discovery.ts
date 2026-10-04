@@ -1,10 +1,10 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { $, browser } from '@wdio/globals';
-import { checkoutStepText, continueGuestToCreditCard } from '../../screens/ios/buyer/checkout.ts';
-import { openEventCheckout } from '../../screens/ios/buyer/explore.ts';
+import { browser } from '@wdio/globals';
+import { iosGuestCheckoutPage } from '../../screens/ios/buyer/checkout.ts';
+import { openEventCheckout } from '../../flows/ios/buyer/open-event-checkout.ts';
 import { adultTicketPurchase } from '../../shared/purchase/scenario.ts';
-import { target, timeoutMs } from '../../settings.ts';
+import { target } from '../../settings.ts';
 
 const output = resolve('artifacts', target, 'discovery');
 
@@ -16,7 +16,7 @@ async function capture(name: string) {
 
 describe('Public event discovery', () => {
   it('opens Comic Con from native search', async () => {
-    const webview = await openEventCheckout({
+    await openEventCheckout({
       scenario: adultTicketPurchase,
       capture,
       onEventWebview: async () => {
@@ -30,39 +30,20 @@ describe('Public event discovery', () => {
         if (!process.env.PUBLIC_GUEST_PHONE) {
           throw new Error('Set PUBLIC_GUEST_PHONE for the required guest phone field.');
         }
-        await continueGuestToCreditCard({
-          webview,
-          guestName: process.env.PUBLIC_GUEST_NAME || 'Appium QA',
-          guestEmail: process.env.PUBLIC_GUEST_EMAIL,
-          guestPhone: process.env.PUBLIC_GUEST_PHONE,
+        await iosGuestCheckoutPage.advanceGuestToCreditCard({
+          name: process.env.PUBLIC_GUEST_NAME || 'Appium QA',
+          email: process.env.PUBLIC_GUEST_EMAIL,
+          phone: process.env.PUBLIC_GUEST_PHONE,
         });
-        const manualAddress = await $('//XCUIElementTypeButton[@name="Enter address manually"]');
-        await manualAddress.waitForDisplayed({ timeout: timeoutMs.uiControl });
-        await manualAddress.click();
-        await $('//XCUIElementTypeTextField[@name="Address line 1"]').waitForDisplayed({
-          timeout: timeoutMs.uiControl,
-        });
+        await iosGuestCheckoutPage.openManualAddress();
       } else {
-        await browser.execute('mobile: swipe', { direction: 'up' });
-        const guest = await $('//XCUIElementTypeButton[@name="Continue as guest"]');
-        await guest.waitForDisplayed({ timeout: timeoutMs.uiControl });
-        await guest.click();
+        await iosGuestCheckoutPage.startGuest();
         await capture('guest-next');
       }
     } else if (process.env.SHOWPASS_CUSTOMER_EMAIL && process.env.SHOWPASS_CUSTOMER_PASSWORD) {
-      await $('//XCUIElementTypeTextField[@name="Email address"]').setValue(
+      await iosGuestCheckoutPage.signInCustomer(
         process.env.SHOWPASS_CUSTOMER_EMAIL,
-      );
-      await $('//XCUIElementTypeSecureTextField[@name="Password"]').setValue(
         process.env.SHOWPASS_CUSTOMER_PASSWORD,
-      );
-      await $('//XCUIElementTypeButton[@name="Log in"]').click();
-      await browser.waitUntil(
-        async () => (await browser.getPageSource()).includes(checkoutStepText.guestDetailsComplete),
-        {
-          timeout: timeoutMs.customerLogin,
-          timeoutMsg: 'Checkout did not advance after the Customer logged in',
-        },
       );
     }
   });

@@ -1,23 +1,38 @@
 import { $, browser } from '@wdio/globals';
 import { appId, timeoutMs } from '../../../settings.ts';
 
-export async function waitForIphoneLoginForm(): Promise<void> {
-  const email = await $('//XCUIElementTypeTextField[contains(@name,"Email")]');
-  try {
-    await email.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-  } catch (error) {
-    if ((await browser.queryAppState(appId)) !== 4) {
-      throw new Error('Showpass Beta exited after tapping Login, before the email form opened.', {
-        cause: error,
-      });
+class IosLoginPage {
+  get email() {
+    return $('//XCUIElementTypeTextField[contains(@name,"Email")]');
+  }
+
+  get password() {
+    return $('//XCUIElementTypeSecureTextField[contains(@name,"Password")]');
+  }
+
+  get submit() {
+    return $('//XCUIElementTypeButton[@name="Login"]');
+  }
+
+  async waitForOpen(): Promise<void> {
+    try {
+      await this.email.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
+    } catch (error) {
+      if ((await browser.queryAppState(appId)) !== 4) {
+        throw new Error('Showpass Beta exited after tapping Login, before the email form opened.', {
+          cause: error,
+        });
+      }
+      throw error;
     }
-    throw error;
+  }
+
+  async signIn(email: string, password: string): Promise<void> {
+    await this.waitForOpen();
+    await this.email.setValue(email);
+    await this.password.setValue(password);
+    await this.submit.click();
   }
 }
 
-export async function submitIphoneLogin(email: string, password: string): Promise<void> {
-  await waitForIphoneLoginForm();
-  await $('//XCUIElementTypeTextField[contains(@name,"Email")]').setValue(email);
-  await $('//XCUIElementTypeSecureTextField[contains(@name,"Password")]').setValue(password);
-  await $('//XCUIElementTypeButton[@name="Login"]').click();
-}
+export const iosLoginPage = new IosLoginPage();

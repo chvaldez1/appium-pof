@@ -1,52 +1,42 @@
-import { $, browser } from '@wdio/globals';
+import { browser } from '@wdio/globals';
 import { appId, timeoutMs } from '../../../settings.ts';
-import { dashboardPrompt } from '../../../screens/ios/organizer/dashboard.ts';
-import { submitIphoneLogin } from '../../../screens/ios/auth/login.ts';
+import { organizerDashboardPage } from '../../../screens/ios/organizer/dashboard.ts';
+import { iosLoginPage } from '../../../screens/ios/auth/login.ts';
+import { buyerAccountPage } from '../../../screens/ios/buyer/account.ts';
+import { buyerBottomBar } from '../../../screens/ios/buyer/bottom-navigation.ts';
+import { mainMenuPage } from '../../../screens/ios/main-menu.ts';
+import { organizationSelectionPage } from '../../../screens/ios/organizer/organization.ts';
 
 const organizationName =
   process.env.SHOWPASS_ORGANIZATION_NAME ?? 'Organization For System Gateway Payment Intent';
 
-async function isVisible(name: string): Promise<boolean> {
-  return (await $(`~${name}`)).isDisplayed();
-}
-
 async function selectOrganization(): Promise<void> {
-  await $('~Select organization').waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-  const organization = await $(`~${organizationName}`);
-  if (!(await organization.isDisplayed())) {
-    const search = await $('//XCUIElementTypeTextField[contains(@name,"Search organization")]');
-    await search.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-    await search.setValue(organizationName);
-  }
-  await organization.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-  await organization.click();
-  await $(`~${dashboardPrompt}`).waitForDisplayed({ timeout: timeoutMs.pageLoad });
+  await organizationSelectionPage.select(organizationName);
+  await organizerDashboardPage.prompt.waitForDisplayed({ timeout: timeoutMs.pageLoad });
 }
 
 export async function openOrganizerDashboard({ allowLogin }: { allowLogin: boolean }): Promise<void> {
   await browser.activateApp(appId);
-  const alert = await browser.getAlertText().catch(() => '');
-  if (/location/i.test(alert)) await browser.dismissAlert();
-  const account = await $('//XCUIElementTypeButton[contains(@name,"Account")]');
-  const email = await $('//XCUIElementTypeTextField[contains(@name,"Email")]');
   await browser.waitUntil(
     async () =>
-      (await isVisible(dashboardPrompt)) ||
-      (await isVisible('Select organization')) ||
-      (await isVisible('Main menu')) ||
-      (await email.isDisplayed()) ||
-      (await account.isDisplayed()),
+      (await organizerDashboardPage.prompt.isDisplayed()) ||
+      (await organizationSelectionPage.title.isDisplayed()) ||
+      (await mainMenuPage.title.isDisplayed()) ||
+      (await iosLoginPage.email.isDisplayed()) ||
+      (await buyerBottomBar.tab('Account').isDisplayed()),
     { timeout: timeoutMs.pageLoad, timeoutMsg: 'The app did not show a usable starting screen.' },
   );
-  if (await isVisible(dashboardPrompt)) return;
-  if (await isVisible('Select organization')) return selectOrganization();
-  if ((await isVisible('Main menu')) && (await isVisible('Dashboard'))) {
-    await $('~Dashboard').click();
+  if (await organizerDashboardPage.prompt.isDisplayed()) return;
+  if (await organizationSelectionPage.title.isDisplayed()) return selectOrganization();
+  if ((await mainMenuPage.title.isDisplayed()) && (await mainMenuPage.dashboard.isDisplayed())) {
+    await mainMenuPage.openDashboard();
     await browser.waitUntil(
-      async () => (await isVisible(dashboardPrompt)) || (await isVisible('Select organization')),
+      async () =>
+        (await organizerDashboardPage.prompt.isDisplayed()) ||
+        (await organizationSelectionPage.title.isDisplayed()),
       { timeout: timeoutMs.uiNavigation, timeoutMsg: 'Dashboard did not open after selecting it.' },
     );
-    if (await isVisible(dashboardPrompt)) return;
+    if (await organizerDashboardPage.prompt.isDisplayed()) return;
     return selectOrganization();
   }
 
@@ -59,22 +49,23 @@ export async function openOrganizerDashboard({ allowLogin }: { allowLogin: boole
     throw new Error('Set SHOWPASS_ORGANIZER_EMAIL and SHOWPASS_ORGANIZER_PASSWORD.');
   }
 
-  if (!(await email.isDisplayed())) {
-    if (await isVisible('Main menu')) {
-      await $('~Login').click();
+  if (!(await iosLoginPage.email.isDisplayed())) {
+    if (await mainMenuPage.title.isDisplayed()) {
+      await mainMenuPage.openLogin();
     } else {
-      await account.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-      await account.click();
-      await $('~Login').click();
+      await buyerBottomBar.open('Account');
+      await buyerAccountPage.openLogin();
     }
   }
-  await submitIphoneLogin(emailAddress, password);
+  await iosLoginPage.signIn(emailAddress, password);
   await browser.waitUntil(
-    async () => (await isVisible('Select organization')) || (await isVisible(dashboardPrompt)),
+    async () =>
+      (await organizationSelectionPage.title.isDisplayed()) ||
+      (await organizerDashboardPage.prompt.isDisplayed()),
     {
       timeout: timeoutMs.customerLogin,
       timeoutMsg: 'Organizer login did not reach organization selection or the dashboard.',
     },
   );
-  if (!(await isVisible(dashboardPrompt))) await selectOrganization();
+  if (!(await organizerDashboardPage.prompt.isDisplayed())) await selectOrganization();
 }

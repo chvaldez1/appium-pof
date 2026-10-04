@@ -13,6 +13,7 @@ export const appId =
 // Milliseconds unless the name explicitly says seconds.
 export const timeoutMs = {
   apiRead: 15_000,
+  systemPrompt: 5_000,
   uiControl: 10_000,
   uiNavigation: 30_000,
   pageLoad: 60_000,
@@ -37,6 +38,6 @@ export const pauseMs = {
   discoveryCapture: 1_000,
 } as const;
 
-export const pollIntervalMs = { invoice: 2_000, webview: 1_500 } as const;
+export const pollIntervalMs = { invoice: 2_000, webview: 1_500, systemPrompt: 500 } as const;
 export const appiumCommandTimeoutSeconds = 180;
 export const invoiceSearchLookbackMs = 120_000;

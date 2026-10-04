@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
 import { target, baseURL, appId, appiumCommandTimeoutSeconds, timeoutMs } from './test/settings.ts';
+import { verifyIosAppBuild } from './scripts/ios-app-build.ts';
+import { dismissOptionalLocationPrompt } from './test/shared/ios/system-prompts.ts';
 
 const targets = ['desktop-safari', 'ios-safari', 'ios-app', 'android-app', 'ios-webview', 'android-webview'];
 if (!targets.includes(target)) throw new Error(`Unknown TARGET: ${target}`);
@@ -61,6 +63,10 @@ if (isApp) {
     if (extname(app) !== expectedExtension) {
       throw new Error(`Use a ${expectedExtension} build for this target.`);
     }
+  }
+  if (target === 'ios-app') {
+    const build = verifyIosAppBuild({ udid: required('IOS_UDID'), appPath: app });
+    console.log(`Showpass Beta build verified: ${build.version} (${build.build}).`);
   }
   Object.assign(capabilities, {
     ...(app ? { 'appium:app': app, 'appium:enforceAppInstall': true } : {}),
@@ -129,6 +135,10 @@ export const config: WebdriverIO.Config = {
     ],
   ],
   before: async function () {
+    if (target === 'ios-app') {
+      verifyIosAppBuild({ udid: required('IOS_UDID') });
+      await dismissOptionalLocationPrompt();
+    }
     writeFileSync(
       resolve(output, 'session.json'),
       JSON.stringify(

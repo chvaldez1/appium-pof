@@ -1,11 +1,22 @@
-import { $ } from '@wdio/globals';
+import assert from 'node:assert/strict';
+import { $, browser } from '@wdio/globals';
 import { timeoutMs } from '../../../settings.ts';
 
-// Call from the Event WebView before switching back to native ticket controls.
-export async function clickBuyTicketsOnEventPage(): Promise<void> {
-  const buy = await $(
-    '//button[contains(translate(normalize-space(.),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),"BUY TICKETS")]',
-  );
-  await buy.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-  await buy.click();
+class EventWebviewPage {
+  get buyTickets() {
+    return $(
+      '//button[contains(translate(normalize-space(.),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),"BUY TICKETS")]',
+    );
+  }
+
+  async waitForEvent(eventUrl: string): Promise<void> {
+    assert.ok((await browser.getUrl()).startsWith(eventUrl));
+  }
+
+  async openTicketPicker(): Promise<void> {
+    await this.buyTickets.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
+    await this.buyTickets.click();
+  }
 }
+
+export const eventWebviewPage = new EventWebviewPage();

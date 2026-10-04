@@ -1,4 +1,5 @@
 node_modules/
 artifacts/
-apps/
+apps/*
+!apps/README.md
 package-lock.json

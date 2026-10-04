@@ -14,6 +14,7 @@
     "test:public": "node --import tsx scripts/run-with-playwright-fixtures.ts public",
     "recover:public": "node --import tsx scripts/run-with-playwright-fixtures.ts recover-public",
     "test:ios:versions": "node --import tsx scripts/run-ios-app-versions.ts",
+    "app:check": "node --import tsx scripts/check-ios-app-build.ts",
     "test:organizer:navigation": "node --import tsx scripts/run-with-playwright-fixtures.ts organizer-navigation",
     "test:buyer:navigation": "BUYER_NAVIGATION_RUN=1 TARGET=ios-app wdio run ./wdio.conf.ts --spec ./test/specs/ios/buyer.navigation.ts",
     "test:box-office:entry": "TARGET=ios-app wdio run ./wdio.conf.ts --spec ./test/specs/ios/box-office.discovery.ts",

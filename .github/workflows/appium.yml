@@ -1,0 +1,72 @@
+name: Appium QA
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Code quality and unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  safari:
+    if: github.event_name == 'workflow_dispatch'
+    needs: quality
+    name: ${{ matrix.target }}
+    runs-on: macos-26
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [desktop-safari, ios-safari]
+    env:
+      TARGET: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Record tool versions
+        run: |
+          mkdir -p artifacts
+          node --version > artifacts/node.txt
+          xcodebuild -version > artifacts/xcode.txt
+          sw_vers > artifacts/macos.txt
+          /usr/bin/safaridriver --version > artifacts/safari.txt
+          xcrun simctl list runtimes > artifacts/ios-runtimes.txt
+      - name: Enable Safari automation
+        if: matrix.target == 'desktop-safari'
+        run: sudo /usr/bin/safaridriver --enable
+      - name: Create an iPhone simulator
+        if: matrix.target == 'ios-safari'
+        run: npx tsx scripts/ci-ios-simulator.ts
+      - name: Run the test
+        run: npm test
+      - name: Save screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-${{ matrix.target }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 7

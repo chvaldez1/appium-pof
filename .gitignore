@@ -1,0 +1,13 @@
+node_modules/
+artifacts/
+apps/*
+!apps/README.md
+.env
+.env.*
+!.env.example
+.DS_Store
+android-webview/local.properties
+android-webview/.gradle/
+android-webview/**/build/
+ios-webview/build/
+ios-webview/**/xcuserdata/

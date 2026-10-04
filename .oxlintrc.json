@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": { "node": true, "browser": true, "mocha": true },
+  "ignorePatterns": ["artifacts/**", "apps/**", "node_modules/**"],
+  "options": { "typeAware": true, "denyWarnings": true },
+  "rules": {
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/no-explicit-any": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "test/screens/**/*.ts",
+        "test/flows/**/*.ts",
+        "test/specs/**/*.ts",
+        "test/shared/webview/**/*.ts"
+      ],
+      "rules": { "typescript/await-thenable": "off" }
+    }
+  ]
+}

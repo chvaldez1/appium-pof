@@ -52,7 +52,7 @@ SENTRY_DISABLE_AUTO_UPLOAD=true SENTRY_DISABLE_NATIVE_DEBUG_UPLOAD=true pnpm mob
 cd packages/mobile
 ```
 
-Compile a self-contained Beta simulator app. The explicit deployment target and ad hoc signing avoid Xcode 27 failures seen with the frontend's standard Fastlane simulator lane. The small patch below changes a **generated** Pods script; do not commit it. If the generated script differs, stop and inspect it rather than applying an unknown edit.
+Compile a self-contained Beta simulator app. Keep Xcode signing **enabled**: simulator Keychain entitlements must be embedded in the executable at build time. An unsigned build followed by plain `codesign` loses that setup. The explicit deployment target avoids Xcode 27 failures seen with the frontend's standard Fastlane simulator lane. The small patch below changes a **generated** Pods script; do not commit it. If the generated script differs, stop and inspect it rather than applying an unknown edit.
 
 ```sh
 python3 - <<'PY'
@@ -71,7 +71,7 @@ SENTRY_DISABLE_AUTO_UPLOAD=true SENTRY_DISABLE_NATIVE_DEBUG_UPLOAD=true xcodebui
   -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
   -derivedDataPath fastlane/releases/ios/beta-build \
   ARCHS=arm64 ONLY_ACTIVE_ARCH=YES IPHONEOS_DEPLOYMENT_TARGET=16.0 \
-  CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY=- EXPANDED_CODE_SIGN_IDENTITY=- build
+  CODE_SIGNING_ALLOWED=YES CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=- build
 export BUILT_APP="$PWD/fastlane/releases/ios/beta-build/Build/Products/Beta-iphonesimulator/mobile.app"
 ```
 
@@ -85,18 +85,17 @@ After `xcodebuild` succeeds, return to the Appium checkout and save the output u
 cd "$APPIUM_ROOT"
 nvm use
 ditto "$BUILT_APP" apps/Showpass-Beta-Simulator.app
-codesign --force --deep --sign - apps/Showpass-Beta-Simulator.app
+codesign --verify --deep --strict apps/Showpass-Beta-Simulator.app
 ```
 
 Continue at [install and run the first test](../README.md#first-iphone-run). Keep the app installed for later runs; rebuilding is only needed when the binary changes.
 
 ## Debugging the app
 
-To open the installed Beta app yourself, run these commands from the Appium repository root with `IOS_UDID` set:
+To open the installed Beta app yourself, choose `IOS_UDID` in `.env.local`, then run from the Appium repository root:
 
 ```sh
-sh scripts/open-ios-viewer.sh "$IOS_UDID"
-xcrun simctl launch "$IOS_UDID" com.showpass.swift.beta
+npm run app:open
 ```
 
 This opens the phone window and launches the installed app without rebuilding or starting a test.

@@ -47,14 +47,19 @@ describe('Comic Con public purchase in the beta iPhone app', () => {
       );
       mkdirSync(output, { recursive: true });
       const prepared = await preparePublicPurchase({ name, email, phone }, scenario);
-      if (process.env.DRY_RUN === '1') return;
+      if (process.env.DRY_RUN === '1') {
+        console.log('Public checkout: dry run complete; payment was not submitted.');
+        return;
+      }
 
       // Kept locally even if payment succeeds but later UI/API verification fails.
       writeFileSync(
         resolve(output, 'run.json'),
         JSON.stringify({ runTag, email, startedAt: createdAfter.toISOString() }, null, 2),
       );
+      console.log('Public checkout: submitting one test payment.');
       const { transactionId, checkoutError } = await prepared.submitOnce();
+      console.log('Public checkout: verifying the saved order and issued ticket.');
       const invoice = await waitForVerifiedInvoice({
         email,
         createdAfter,
@@ -83,6 +88,7 @@ describe('Comic Con public purchase in the beta iPhone app', () => {
         invoice.transaction_id,
         'The order shown in the app must match the saved transaction.',
       );
+      console.log('Public checkout: order and issued ticket verified.');
     },
   );
 });

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { $, browser } from '@wdio/globals';
 import { pauseMs, timeoutMs } from '@config/test-settings.ts';
 import { expectedCardTotalText, type PurchaseScenario } from '@shared/purchase/scenario.ts';
+import { enterIosText } from '@shared/ios/text-input.ts';
 
 export const checkoutStepText = {
   guestDetailsComplete: '2 of 4',
@@ -93,9 +94,11 @@ class IosGuestCheckoutPage {
     assert.ok(guest.name && guest.email && guest.phone, 'Guest name, email, and phone are required.');
     await this.startGuest();
     await browser.pause(pauseMs.guestForm);
-    await this.fullName.setValue(guest.name);
-    await this.email.setValue(guest.email);
+    await enterIosText(await this.fullName, guest.name);
+    await enterIosText(await this.email, guest.email);
+    // The phone control applies a country mask; native clearValue is not reliable here.
     await this.phone.setValue(guest.phone);
+    await this.continueButton.waitForEnabled({ timeout: timeoutMs.uiControl });
     await this.continueButton.click();
     await this.confirmButton.waitForDisplayed({ timeout: timeoutMs.uiControl });
     await this.confirmButton.click();
@@ -103,11 +106,15 @@ class IosGuestCheckoutPage {
       async () => (await browser.getPageSource()).includes(checkoutStepText.guestDetailsComplete),
       { timeout: timeoutMs.uiNavigation, timeoutMsg: 'Guest details did not advance to step 2' },
     );
+    console.log('Public checkout: guest details accepted.');
+    await this.continueButton.waitForEnabled({ timeout: timeoutMs.uiControl });
     await this.continueButton.click();
     await browser.waitUntil(
       async () => (await browser.getPageSource()).includes(checkoutStepText.addOnsComplete),
       { timeout: timeoutMs.uiNavigation, timeoutMsg: 'Checkout did not advance past optional add-ons' },
     );
+    console.log('Public checkout: optional add-ons rendered.');
+    await this.continueButton.waitForEnabled({ timeout: timeoutMs.uiControl });
     await this.continueButton.click();
     try {
       await browser.waitUntil(
@@ -118,10 +125,18 @@ class IosGuestCheckoutPage {
         },
       );
     } catch (error) {
-      throw new Error('Guest checkout did not advance to payment; no payment was submitted.', {
-        cause: error,
-      });
+      const source = await browser.getPageSource();
+      const lastStep = Object.values(checkoutStepText)
+        .filter((text) => source.includes(text))
+        .join(', ');
+      throw new Error(
+        `Guest checkout did not advance to payment (visible step: ${lastStep || 'unknown'}); no payment was submitted.`,
+        {
+          cause: error,
+        },
+      );
     }
+    console.log('Public checkout: payment step rendered.');
     await this.terms.waitForDisplayed({ timeout: timeoutMs.uiControl });
     await this.terms.click();
     await browser.execute('mobile: swipe', { direction: 'up' });
@@ -131,7 +146,7 @@ class IosGuestCheckoutPage {
   }
 
   async fillCard(card: PurchaseScenario['testCard']): Promise<void> {
-    await this.cardholderName.setValue(card.nameOnCard);
+    await enterIosText(await this.cardholderName, card.nameOnCard);
     await this.cardNumber.setValue(card.number);
     await this.cardExpiry.setValue(card.expiry);
     await this.cardCvc.setValue(card.cvc);
@@ -144,7 +159,7 @@ class IosGuestCheckoutPage {
   }
 
   async signInCustomer(email: string, password: string): Promise<void> {
-    await this.email.setValue(email);
+    await enterIosText(await this.email, email);
     await this.password.setValue(password);
     await this.logIn.click();
     await browser.waitUntil(

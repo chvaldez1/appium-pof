@@ -1,5 +1,6 @@
 import { $, browser } from '@wdio/globals';
-import { appId, timeoutMs } from '@config/test-settings.ts';
+import { appId, applicationState, timeoutMs } from '@config/test-settings.ts';
+import { enterIosText } from '@shared/ios/text-input.ts';
 
 class IosLoginPage {
   get email() {
@@ -18,7 +19,7 @@ class IosLoginPage {
     try {
       await this.email.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
     } catch (error) {
-      if ((await browser.queryAppState(appId)) !== 4) {
+      if ((await browser.queryAppState(appId)) !== applicationState.runningInForeground) {
         throw new Error('Showpass Beta exited after tapping Login, before the email form opened.', {
           cause: error,
         });
@@ -29,7 +30,7 @@ class IosLoginPage {
 
   async signIn(email: string, password: string): Promise<void> {
     await this.waitForOpen();
-    await this.email.setValue(email);
+    await enterIosText(await this.email, email);
     await this.password.setValue(password);
     await this.submit.click();
   }

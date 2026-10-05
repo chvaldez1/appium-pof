@@ -36,6 +36,7 @@ if (target === 'desktop-safari') {
     'appium:automationName': 'Safari',
   };
 } else if (isIOS) {
+  console.log(`Selected iOS device: ${required('IOS_UDID')}.`);
   capabilities = {
     platformName: 'iOS',
     'appium:automationName': 'XCUITest',
@@ -87,10 +88,18 @@ if (isAndroid && isWebView) {
   capabilities['appium:enableWebviewDetailsCollection'] = true;
 }
 
-const serverArgs: { address: string; useDrivers: string; logLevel: string; allowInsecure?: string } = {
+const serverArgs: {
+  address: string;
+  useDrivers: string;
+  logLevel: string;
+  config?: string;
+  allowInsecure?: string;
+} = {
   address: '127.0.0.1',
   useDrivers: isIOS ? 'xcuitest' : isAndroid ? 'uiautomator2' : 'safari',
-  logLevel: sensitiveRun ? 'error' : 'info',
+  // The service detects readiness from Appium's INFO listener message.
+  logLevel: 'info',
+  ...(sensitiveRun ? { config: './config/appium-sensitive.json' } : {}),
 };
 if (isAndroid && isWebView) {
   serverArgs.allowInsecure = 'uiautomator2:chromedriver_autodownload';

@@ -52,6 +52,14 @@ void test('selects only the unique, recent order in the correct Venue with the c
   );
 });
 
+void test('a native public checkout verifies Mobile and rejects a website order', () => {
+  assert.equal(adultTicketPurchase.expectedPublicSource, 'psp_mobile');
+  const mobileQuery = { ...query, expectedSource: adultTicketPurchase.expectedPublicSource };
+  const mobileInvoice = { ...invoice, purchase_source_platform: 'psp_mobile' };
+  assert.equal(selectVerifiedInvoice([mobileInvoice], mobileQuery), mobileInvoice);
+  assert.throws(() => selectVerifiedInvoice([invoice], mobileQuery), /purchase source/);
+});
+
 void test('checks the saved Comic Con Adult item', () => {
   const item = {
     id: 19,

@@ -39,7 +39,8 @@ export const adultTicketPurchase = {
   organizerFixture: 'organizationForSystemGatewayPaymentIntent',
   testCard: stripeVisaAccepted,
   billingAddress: calgaryBillingAddress,
-  expectedPublicSource: 'psp_web',
+  // The native app's embedded checkout records Mobile, even though its UI is a WebView.
+  expectedPublicSource: 'psp_mobile',
   expectedMobileBoxOfficeSource: 'psp_mobile_box_office',
 } satisfies PurchaseScenario;
 

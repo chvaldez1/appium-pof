@@ -1,3 +1,5 @@
+import '@config/local-env.ts';
+
 export const target = process.env.TARGET || 'desktop-safari';
 export const baseURL = 'https://beta.showpass.com/';
 export const appId =
@@ -30,6 +32,7 @@ export const timeoutMs = {
 } as const;
 
 export const pauseMs = {
+  nativeTextCommit: 500,
   searchSuggestions: 1_500,
   searchResults: 2_500,
   checkoutTransition: 1_500,
@@ -40,4 +43,5 @@ export const pauseMs = {
 
 export const pollIntervalMs = { invoice: 2_000, webview: 1_500, systemPrompt: 500 } as const;
 export const appiumCommandTimeoutSeconds = 180;
+export const applicationState = { runningInForeground: 4 } as const;
 export const invoiceSearchLookbackMs = 120_000;

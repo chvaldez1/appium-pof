@@ -1,0 +1,10 @@
+{
+  "server": {
+    "log-filters": [
+      {
+        "pattern": "^(?!Appium REST http interface listener started on http://127\\.0\\.0\\.1:[0-9]+/?$)[\\s\\S]+$",
+        "replacer": "[REDACTED]"
+      }
+    ]
+  }
+}

@@ -42,6 +42,37 @@ export function appBuildAtPath(appPath: string): IosAppBuild {
 }
 
 export function installedIosAppBuild(udid: string): IosAppBuild {
+  const inventory = JSON.parse(
+    execFileSync('xcrun', ['simctl', 'list', 'devices', '--json'], {
+      encoding: 'utf8',
+      timeout: timeoutMs.simulatorCommand,
+    }),
+  ) as { devices: Record<string, { udid: string; state: string; isAvailable: boolean }[]> };
+  const simulator = Object.values(inventory.devices)
+    .flat()
+    .find((device) => device.udid === udid);
+  if (simulator) {
+    if (!simulator.isAvailable) throw new Error(`Simulator ${udid} is unavailable in the selected Xcode.`);
+    if (simulator.state !== 'Booted') {
+      execFileSync('xcrun', ['simctl', 'boot', udid], { timeout: timeoutMs.simulatorCommand });
+    }
+    execFileSync('xcrun', ['simctl', 'bootstatus', udid, '-b'], { timeout: timeoutMs.simulatorCommand });
+    let appPath: string;
+    try {
+      appPath = execFileSync(
+        'xcrun',
+        ['simctl', 'get_app_container', udid, expectedIosAppBuild.bundleId, 'app'],
+        {
+          encoding: 'utf8',
+          timeout: timeoutMs.simulatorCommand,
+          stdio: ['ignore', 'pipe', 'pipe'],
+        },
+      ).trim();
+    } catch {
+      throw new Error(`Showpass Beta is not installed on simulator ${udid}. Run npm run app:install first.`);
+    }
+    return appBuildAtPath(appPath);
+  }
   const temp = mkdtempSync(join(tmpdir(), 'showpass-ios-build-'));
   const resultFile = join(temp, 'apps.json');
   try {

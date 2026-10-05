@@ -11,6 +11,14 @@
 - Model a screen or WebView as a small, stateless WebdriverIO page object with lazy selector getters and meaningful user actions. Specs assert outcomes, flows coordinate screens and native/WebView contexts, and page objects own their own selectors. Keep credentials, API calls, fixture data, and session lifecycle out of page objects.
 - Move code into `shared/` when its behavior and selectors are actually common. Pass a scenario into shared checks; do not import one Event fixture inside a reusable verifier.
 - Use typed objects for fixed fixtures and a small function for values generated per run. Do not add a factory class for static data.
+- Load local settings through `config/local-env.ts`; keep `.env.local` ignored and preserve shell/CI overrides. Do not commit device UUIDs or private accounts.
+- Keep Xcode simulator signing enabled so the executable embeds Keychain entitlements. Do not replace it with a plain unsigned build plus post-build signing, and never use simulator signing instructions for a physical device build.
+
+## Local resource use
+
+- Run one operation at a time. Do not overlap builds, test runs, formatting, or quality checks.
+- Keep only the selected simulator booted. Run the iOS version matrix sequentially and shut down each owned simulator before starting the next.
+- After an interruption, inspect owned work before starting more. Never terminate unrelated processes.
 
 ## Blockers and queued work
 

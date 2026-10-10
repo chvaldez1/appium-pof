@@ -1,0 +1,66 @@
+import assert from 'node:assert/strict';
+import { mkdtempSync, mkdirSync, rmSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { test } from 'node:test';
+import {
+  purchaseRunDirectory,
+  readPurchaseRunMarker,
+  preparePurchaseRun,
+  writePurchaseRunMarker,
+  writePurchaseResult,
+} from '@support/artifacts/run-artifacts.ts';
+
+void test('keeps payment recovery markers separate across runs and reads the older marker shape', () => {
+  const root = mkdtempSync(resolve(tmpdir(), 'appium-purchase-runs-'));
+  try {
+    const first = { runTag: 'appium-101', email: 'qa+first@example.test', startedAt: '2026-10-04T10:00:00Z' };
+    const second = {
+      runTag: 'appium-102',
+      email: 'qa+second@example.test',
+      startedAt: '2026-10-04T10:01:00Z',
+    };
+    for (const marker of [first, second]) {
+      const path = purchaseRunDirectory(marker.runTag, root);
+      mkdirSync(path, { recursive: true });
+      writeFileSync(resolve(path, 'run.json'), JSON.stringify(marker));
+    }
+    assert.deepEqual(readPurchaseRunMarker(first.runTag, root), first);
+    assert.deepEqual(readPurchaseRunMarker(second.runTag, root), second);
+    assert.equal(readPurchaseRunMarker('appium-103', root), undefined);
+
+    writeFileSync(
+      resolve(root, 'run.json'),
+      JSON.stringify({ email: 'qa+appium-100@example.test', startedAt: '2026-10-04T09:00:00Z' }),
+    );
+    assert.deepEqual(readPurchaseRunMarker('appium-100', root), {
+      runTag: 'appium-100',
+      email: 'qa+appium-100@example.test',
+      startedAt: '2026-10-04T09:00:00Z',
+    });
+    assert.throws(() => purchaseRunDirectory('../outside', root));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+void test('a saved payment marker prevents starting the same purchase again', () => {
+  const root = mkdtempSync(resolve(tmpdir(), 'appium-purchase-recovery-'));
+  try {
+    const marker = { runTag: 'appium-201', email: 'qa@example.test', startedAt: '2026-10-10T10:00:00Z' };
+    preparePurchaseRun(marker.runTag, root);
+    writePurchaseRunMarker(marker, root);
+    assert.throws(() => preparePurchaseRun(marker.runTag, root), /Recover that run/);
+    assert.deepEqual(readPurchaseRunMarker(marker.runTag, root), marker);
+    const result = { transactionId: 'saved-order', ticketIssued: true };
+    writePurchaseResult(marker.runTag, result, root);
+    assert.deepEqual(
+      JSON.parse(
+        readFileSync(resolve(purchaseRunDirectory(marker.runTag, root), 'public-result.json'), 'utf8'),
+      ),
+      result,
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

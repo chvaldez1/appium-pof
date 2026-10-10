@@ -10,21 +10,16 @@
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "paths": {
-      "@screens/*": ["./screens/*"],
-      "@flows/*": ["./flows/*"],
-      "@shared/*": ["./shared/*"],
-      "@tests/*": ["./tests/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@flows/*": ["./src/flows/*"],
+      "@api/*": ["./src/api/*"],
+      "@data/*": ["./src/data/*"],
+      "@support/*": ["./src/support/*"],
+      "@setup/*": ["./src/setup/*"],
       "@config/*": ["./config/*"],
-      "@scripts/*": ["./scripts/*"]
+      "@scripts/*": ["./scripts/*"],
+      "@tests/*": ["./tests/*"]
     }
   },
-  "include": [
-    "wdio.conf.ts",
-    "scripts/**/*.ts",
-    "config/**/*.ts",
-    "tests/**/*.ts",
-    "screens/**/*.ts",
-    "flows/**/*.ts",
-    "shared/**/*.ts"
-  ]
+  "include": ["wdio.conf.ts", "config/**/*.ts", "scripts/**/*.ts", "src/**/*.ts", "tests/**/*.ts"]
 }

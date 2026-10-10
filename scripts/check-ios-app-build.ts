@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { verifyIosAppBuild } from '@scripts/ios-app-build.ts';
+import { verifyIosAppBuild } from '@config/ios-app-build.ts';
 
 const udid = process.env.IOS_UDID;
 if (!udid) throw new Error('Set IOS_UDID to the connected iPhone or simulator identifier.');

@@ -1,0 +1,2853 @@
+.
+├── AGENTS.md
+├── apps
+│   ├── README.md
+│   └── Showpass-Beta-Simulator.app
+│       ├── _CodeSignature
+│       │   └── CodeResources
+│       ├── AntDesign.ttf
+│       ├── AppAuthCore_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── AppIcon60x60@2x.png
+│       ├── AppIcon76x76@2x~ipad.png
+│       ├── assets
+│       │   ├── __node_modules
+│       │   │   └── @react-navigation
+│       │   │       └── elements
+│       │   │           └── src
+│       │   │               └── assets
+│       │   │                   ├── back-icon-mask.png
+│       │   │                   ├── back-icon.png
+│       │   │                   ├── back-icon@2x.png
+│       │   │                   └── back-icon@3x.png
+│       │   └── assets
+│       │       ├── icons
+│       │       │   ├── asterisk-green-icon.png
+│       │       │   ├── asterisk-red-icon.png
+│       │       │   ├── calendar-icon-white.png
+│       │       │   ├── calendar-icon.png
+│       │       │   ├── cart-icon.png
+│       │       │   ├── category-icon-white.png
+│       │       │   ├── category-icon.png
+│       │       │   ├── check-white.png
+│       │       │   ├── checkin-icon.png
+│       │       │   ├── close-icon.png
+│       │       │   ├── credits-icon.png
+│       │       │   ├── dashboard-activity.png
+│       │       │   ├── dashboard-box-office.png
+│       │       │   ├── dashboard-capacity.png
+│       │       │   ├── dashboard-check-in.png
+│       │       │   ├── dashboard-employee.png
+│       │       │   ├── dashboard-event-stats.png
+│       │       │   ├── dashboard-guestlist.png
+│       │       │   ├── dashboard-my-stats.png
+│       │       │   ├── dashboard-transactions.png
+│       │       │   ├── dollar-sign-icon.png
+│       │       │   ├── edit-pencil-icon.png
+│       │       │   ├── explore-tab-bar
+│       │       │   │   ├── account-active.png
+│       │       │   │   ├── account-inactive.png
+│       │       │   │   ├── explore-active.png
+│       │       │   │   ├── explore-inactive.png
+│       │       │   │   ├── orders-active.png
+│       │       │   │   ├── orders-inactive.png
+│       │       │   │   ├── saved-active.png
+│       │       │   │   ├── saved-inactive.png
+│       │       │   │   ├── upcoming-active.png
+│       │       │   │   └── upcoming-inactive.png
+│       │       │   ├── eye-icon.png
+│       │       │   ├── hash-tag-icon-white.png
+│       │       │   ├── hash-tag-icon.png
+│       │       │   ├── info-circle-grey-icon.png
+│       │       │   ├── info-circle-icon.png
+│       │       │   ├── legend-icon.png
+│       │       │   ├── location-pin-white.png
+│       │       │   ├── location-pin.png
+│       │       │   ├── login-icon.png
+│       │       │   ├── membership-icon.png
+│       │       │   ├── my-orders-icon.png
+│       │       │   ├── nfc-dark-icon.png
+│       │       │   ├── password-hide.png
+│       │       │   ├── password-show.png
+│       │       │   ├── plus-icon.png
+│       │       │   ├── products-icon.png
+│       │       │   ├── quick-queue-icon.png
+│       │       │   ├── success-icon.png
+│       │       │   ├── ticket-white.png
+│       │       │   ├── ticket.png
+│       │       │   ├── trash-icon-gray.png
+│       │       │   ├── upcoming-active.png
+│       │       │   ├── user-icon.png
+│       │       │   └── waitlist-icon.png
+│       │       └── images
+│       │           ├── auth-lock
+│       │           │   ├── account.png
+│       │           │   ├── orders.png
+│       │           │   ├── saved.png
+│       │           │   └── upcoming.png
+│       │           ├── camera-phone.png
+│       │           ├── dev-placeholder
+│       │           │   └── banner-placeholder.png
+│       │           ├── no-avatar.jpeg
+│       │           ├── scan-icon.png
+│       │           ├── scan-type-select.png
+│       │           ├── scanner-icon-white.png
+│       │           ├── scanner-icon.png
+│       │           ├── scanning-icon.png
+│       │           ├── showpass-logo.png
+│       │           ├── showpass-red-logo.png
+│       │           ├── showpass-s-mark.png
+│       │           ├── square-terminal-step-one.png
+│       │           ├── square-terminal-step-three.png
+│       │           └── square-terminal-step-two.png
+│       ├── Assets.car
+│       ├── boost_privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   └── Info.plist
+│       ├── BootSplash.storyboardc
+│       │   ├── 01J-lp-oVM-view-Ze5-6b-2t3.nib
+│       │   ├── Info.plist
+│       │   └── UIViewController-01J-lp-oVM.nib
+│       ├── Config.xcconfig
+│       ├── Entypo.ttf
+│       ├── EvilIcons.ttf
+│       ├── FBLPromises_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── Feather.ttf
+│       ├── FirebaseCore_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── FirebaseCoreExtension_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── FirebaseCoreInternal_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── FirebaseInstallations_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── FirebaseMessaging_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── FontAwesome.ttf
+│       ├── FontAwesome5_Brands.ttf
+│       ├── FontAwesome5_Regular.ttf
+│       ├── FontAwesome5_Solid.ttf
+│       ├── Fontisto.ttf
+│       ├── Foundation.ttf
+│       ├── Frameworks
+│       │   ├── CorePaymentCard.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── CorePaymentCard
+│       │   │   ├── CorePaymentCardResources.bundle
+│       │   │   │   ├── CorePaymentCardResources-Info.plist
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── InfoPlist.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   └── Info.plist
+│       │   ├── FBAEMKit.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FBAEMKit
+│       │   │   └── Info.plist
+│       │   ├── FBSDKCoreKit_Basics.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FBSDKCoreKit_Basics
+│       │   │   └── Info.plist
+│       │   ├── FBSDKCoreKit.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FacebookSDKStrings.bundle
+│       │   │   │   └── Resources
+│       │   │   │       ├── af.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ar.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── bn.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── cs.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── da.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── de.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── el.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── en_GB.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── en.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── es_ES.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── es.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── fi.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── fil.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── fr.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── gu.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── he.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── hi.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── hr.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── hu.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── id.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── it.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ja.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── kn.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ko.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ml.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── mr.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ms.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── nb.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── nl.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── pa.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── pl.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── pt_PT.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── pt.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ru.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── sk.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── sv.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── ta.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── te.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── th.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── tr.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── vi.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── zh_Hant_HK.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       ├── zh_Hant_TW.lproj
+│       │   │   │       │   └── FacebookSDK.strings
+│       │   │   │       └── zh.lproj
+│       │   │   │           └── FacebookSDK.strings
+│       │   │   ├── FBSDKCoreKit
+│       │   │   └── Info.plist
+│       │   ├── FBSDKGamingServicesKit.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FBSDKGamingServicesKit
+│       │   │   └── Info.plist
+│       │   ├── FBSDKLoginKit.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FBSDKLoginKit
+│       │   │   └── Info.plist
+│       │   ├── FBSDKShareKit.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── FBSDKShareKit
+│       │   │   └── Info.plist
+│       │   ├── hermes.framework
+│       │   │   ├── hermes
+│       │   │   └── Info.plist
+│       │   ├── LCRCore.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Info.plist
+│       │   │   ├── LCRCore
+│       │   │   └── LCRCore.bundle
+│       │   │       ├── Info.plist
+│       │   │       └── PrivacyInfo.xcprivacy
+│       │   ├── MockReaderUI.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Info.plist
+│       │   │   ├── MockReaderUI
+│       │   │   ├── MockReaderUIResources.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── Localizable.strings
+│       │   │   └── MPSDKMockReaderAPIResources.bundle
+│       │   │       ├── ca-ES.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── en-AU.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── en-CA.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── en-GB.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── en-IE.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── en.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── es-ES.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── es.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── fr-CA.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── fr.lproj
+│       │   │       │   └── Localizable.strings
+│       │   │       ├── Info.plist
+│       │   │       └── ja.lproj
+│       │   │           └── Localizable.strings
+│       │   ├── OpenSSL.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Info.plist
+│       │   │   ├── OpenSSL
+│       │   │   └── PrivacyInfo.xcprivacy
+│       │   ├── SquareMobilePaymentsSDK.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Aardvark_Aardvark.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── Aardvark_CoreAardvark.bundle
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── Info.plist
+│       │   │   ├── BadgeIconResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── BlueprintUI_BlueprintUIAccessibilityCore.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-FR.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── pt-PT.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── Bugsnag_SQBugsnag.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── CardReaderSupportResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── EMV_MasterCard_OK.mp3
+│       │   │   │   ├── EMV_Visa_OK.mp3
+│       │   │   │   ├── en_Female_Headphones.mp3
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es_Female_Headphones.mp3
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr_Female_Headphones.mp3
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja_Female_Headphones.mp3
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── PersistedCardReaders.momd
+│       │   │   │   │   ├── PersistedCardReaders1.mom
+│       │   │   │   │   ├── PersistedCardReaders2.mom
+│       │   │   │   │   ├── PersistedCardReaders3.mom
+│       │   │   │   │   ├── PersistedCardReaders4.mom
+│       │   │   │   │   ├── PersistedCardReaders4.omo
+│       │   │   │   │   └── VersionInfo.plist
+│       │   │   │   ├── TMN_ID_OK.wav
+│       │   │   │   ├── TMN_Miryo.wav
+│       │   │   │   ├── TMN_QUICPay_OK.wav
+│       │   │   │   ├── TMN_Suica_OK.wav
+│       │   │   │   ├── TMN_Suica_WARN.wav
+│       │   │   │   └── TMN_Transaction_Terminated.wav
+│       │   │   ├── CashDrawerSupportResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── CheckoutFlowLocalizationResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   ├── Localizable_BACKUP_84430.strings
+│       │   │   │   │   ├── Localizable_BASE_84430.strings
+│       │   │   │   │   ├── Localizable_LOCAL_84430.strings
+│       │   │   │   │   ├── Localizable_REMOTE_84430.strings
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       ├── Localizable_BACKUP_84430.strings
+│       │   │   │       ├── Localizable_BASE_84430.strings
+│       │   │   │       ├── Localizable_LOCAL_84430.strings
+│       │   │   │       ├── Localizable_REMOTE_84430.strings
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── CommercePrimitivesResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Currencies.plist
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── CounterAccessoryLibResources.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── StandInternals.plist
+│       │   │   ├── Datadog_DatadogCore.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── Datadog_DatadogCrashReporting.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── Datadog_DatadogRUM.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── FormattersResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── GRDB_GRDB.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── Info.plist
+│       │   │   ├── Listable_ListableUI.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-au.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-ca.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-ca.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-FR.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── pt-PT.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── README.md
+│       │   │   ├── LocationResources.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── MQCoordinateMaps.json
+│       │   │   ├── LogDriver.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── Messages.momd
+│       │   │   │       ├── 1.mom
+│       │   │   │       ├── 1.omo
+│       │   │   │       └── VersionInfo.plist
+│       │   │   ├── Market_MarketFonts.bundle
+│       │   │   │   ├── CashSans-Medium.otf
+│       │   │   │   ├── CashSans-MediumItalic.otf
+│       │   │   │   ├── CashSans-Regular.otf
+│       │   │   │   ├── CashSans-RegularItalic.otf
+│       │   │   │   ├── CashSans-Semibold.otf
+│       │   │   │   ├── CashSans-SemiboldItalic.otf
+│       │   │   │   ├── CashSansMono-Light.otf
+│       │   │   │   ├── CashSansMono-Medium.otf
+│       │   │   │   ├── CashSansMono-Regular.otf
+│       │   │   │   ├── CashSansMono-Semibold.otf
+│       │   │   │   └── Info.plist
+│       │   │   ├── Market_MarketIcons.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-FR.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── pt-PT.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── Market_MarketTheming.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-FR.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── pt-PT.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── Market_MarketUI.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   └── Info.plist
+│       │   │   ├── MobilePaymentsSDKAPIResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── MobilePaymentsSDKUIResources.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── Modals_Modals.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-FR.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── MPSDKErrorsResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── Localizable.strings
+│       │   │   ├── MPSDKOfflinePaymentsImplResources.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── OfflinePaymentDataModel.momd
+│       │   │   │       ├── OfflinePaymentDataModel.mom
+│       │   │   │       └── VersionInfo.plist
+│       │   │   ├── MPSDKPaymentEngineResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── R2PaymentEngineDataModel.momd
+│       │   │   │       ├── R2PaymentEngine.mom
+│       │   │   │       └── VersionInfo.plist
+│       │   │   ├── MPSDKPaymentsModelsResources.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   └── Info.plist
+│       │   │   ├── MPSDKReaderManagerResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── PeripheralLibResources.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── SupportedPeripherals.jsonc
+│       │   │   ├── PLCrashReporter_CrashReporter.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── PrivacyInfo.xcprivacy
+│       │   │   ├── PrivacyInfo.xcprivacy
+│       │   │   ├── RegisterUIResources.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── setup
+│       │   │   ├── SquareAccountResources.bundle
+│       │   │   │   ├── Accounts.momd
+│       │   │   │   │   ├── Accounts.mom
+│       │   │   │   │   ├── Accounts.omo
+│       │   │   │   │   └── VersionInfo.plist
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── SquareDigitEntrConfigurationResources.bundle
+│       │   │   │   ├── Assets.car
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── SquareFeatureFlagsResources.bundle
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── SquareFeatureFlagsStore.momd
+│       │   │   │       ├── SquareFeatureFlagsStore 2.mom
+│       │   │   │       ├── SquareFeatureFlagsStore 3.mom
+│       │   │   │       ├── SquareFeatureFlagsStore 4.mom
+│       │   │   │       ├── SquareFeatureFlagsStore 5.mom
+│       │   │   │       ├── SquareFeatureFlagsStore 5.omo
+│       │   │   │       ├── SquareFeatureFlagsStore.mom
+│       │   │   │       └── VersionInfo.plist
+│       │   │   ├── SquareFoundationAdditionsResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── SquareMobilePaymentsSDK
+│       │   │   ├── SquarePipesResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── SquareStandSupportResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── SquareUIKitAdditionsResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   └── ja.lproj
+│       │   │   │       └── Localizable.strings
+│       │   │   ├── TippingPreferencesResources.bundle
+│       │   │   │   ├── ca-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-AU.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-GB.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en-IE.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── en.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es-ES.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── es.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr-CA.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── fr.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   ├── Info.plist
+│       │   │   │   ├── ja.lproj
+│       │   │   │   │   └── Localizable.strings
+│       │   │   │   └── TippingPreferences.momd
+│       │   │   │       ├── TippingPreferences.mom
+│       │   │   │       └── VersionInfo.plist
+│       │   │   ├── trustedcerts.plist
+│       │   │   └── WBKeys.plist
+│       │   ├── SquareReader.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Info.plist
+│       │   │   ├── SquareReader
+│       │   │   └── SquareReader.bundle
+│       │   │       ├── Info.plist
+│       │   │       └── PrivacyInfo.xcprivacy
+│       │   ├── StarIO10.framework
+│       │   │   ├── _CodeSignature
+│       │   │   │   └── CodeResources
+│       │   │   ├── Info.plist
+│       │   │   ├── PrivacyInfo.xcprivacy
+│       │   │   └── StarIO10
+│       │   └── StripeTerminal.framework
+│       │       ├── _CodeSignature
+│       │       │   └── CodeResources
+│       │       ├── Info.plist
+│       │       ├── PrivacyInfo.xcprivacy
+│       │       └── StripeTerminal
+│       ├── glog_privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   └── Info.plist
+│       ├── GoogleDataTransport_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── GooglePlacesResources.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── GooglePlaces.bundle
+│       │   │   ├── ar.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── az.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── build-with-google-black@2x.png
+│       │   │   ├── build-with-google-black@3x.png
+│       │   │   ├── build-with-google-white@2x.png
+│       │   │   ├── build-with-google-white@3x.png
+│       │   │   ├── ca.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── cs.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── da.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── de.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── el.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── en_AU.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── en_GB.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── en_IN.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── en.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── es_419.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── es_MX.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── es.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── fi.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── fr_CA.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── fr.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── GoogleSans-Bold.nohints.ttf
+│       │   │   ├── GoogleSans-Bold.ttf
+│       │   │   ├── GoogleSans-BoldItalic.nohints.ttf
+│       │   │   ├── GoogleSans-BoldItalic.ttf
+│       │   │   ├── GoogleSans-Italic.nohints.ttf
+│       │   │   ├── GoogleSans-Italic.ttf
+│       │   │   ├── GoogleSans-Medium.nohints.ttf
+│       │   │   ├── GoogleSans-Medium.ttf
+│       │   │   ├── GoogleSans-MediumItalic.nohints.ttf
+│       │   │   ├── GoogleSans-MediumItalic.ttf
+│       │   │   ├── GoogleSans-Regular.nohints.ttf
+│       │   │   ├── GoogleSans-Regular.ttf
+│       │   │   ├── he.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── hi.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── hr.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── hu.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── hy.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── id.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── Info.plist
+│       │   │   ├── it.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ja.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ka.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ko.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── lt.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ms.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── my.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── nb.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── nl.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── oss_licenses_places.txt.gz
+│       │   │   ├── pl.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── PrivacyInfo.xcprivacy
+│       │   │   ├── pt_BR.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── pt_PT.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ro.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── ru.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── sad_cloud_dark@2x.png
+│       │   │   ├── sad_cloud_dark@3x.png
+│       │   │   ├── sad_cloud@2x.png
+│       │   │   ├── sad_cloud@3x.png
+│       │   │   ├── sk.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── sq.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── sr.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── sv.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── sw.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── th.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── tr.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── uk.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── uz.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── vi.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── zh_CN.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   ├── zh_HK.lproj
+│       │   │   │   └── GooglePlaces.strings
+│       │   │   └── zh_TW.lproj
+│       │   │       └── GooglePlaces.strings
+│       │   └── Info.plist
+│       ├── GoogleService-Info.plist
+│       ├── GoogleSignIn.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── ar.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── ca.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── cs.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── da.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── de.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── el.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── en_GB.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── en.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── es_MX.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── es.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── fi.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── fr_CA.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── fr.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── google.png
+│       │   ├── google@2x.png
+│       │   ├── google@3x.png
+│       │   ├── he.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── hi.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── hr.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── hu.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── id.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── ja.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── ko.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── ms.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── nb.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── nl.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── pl.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── PrivacyInfo.xcprivacy
+│       │   ├── pt_BR.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── pt_PT.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── pt.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── ro.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── Roboto-Bold.ttf
+│       │   ├── ru.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── sk.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── sv.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── th.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── tr.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── uk.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── vi.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   ├── zh_CN.lproj
+│       │   │   └── GoogleSignIn.strings
+│       │   └── zh_TW.lproj
+│       │       └── GoogleSignIn.strings
+│       ├── GoogleUtilities_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── GTMAppAuth_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── GTMSessionFetcher_Core_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── Info.plist
+│       ├── Ionicons.ttf
+│       ├── Lato-Black.ttf
+│       ├── Lato-BlackItalic.ttf
+│       ├── Lato-Bold.ttf
+│       ├── Lato-BoldItalic.ttf
+│       ├── Lato-Hairline.ttf
+│       ├── Lato-HairlineItalic.ttf
+│       ├── Lato-Heavy.ttf
+│       ├── Lato-HeavyItalic.ttf
+│       ├── Lato-Italic.ttf
+│       ├── Lato-Light.ttf
+│       ├── Lato-LightItalic.ttf
+│       ├── Lato-Medium.ttf
+│       ├── Lato-MediumItalic.ttf
+│       ├── Lato-Regular.ttf
+│       ├── Lato-Semibold.ttf
+│       ├── Lato-SemiboldItalic.ttf
+│       ├── Lato-Thin.ttf
+│       ├── Lato-ThinItalic.ttf
+│       ├── LaunchScreen.storyboardc
+│       │   ├── 01J-lp-oVM-view-Ze5-6b-2t3.nib
+│       │   ├── Info.plist
+│       │   └── UIViewController-01J-lp-oVM.nib
+│       ├── main.jsbundle
+│       ├── MaterialCommunityIcons.ttf
+│       ├── MaterialIcons.ttf
+│       ├── mobile
+│       ├── modules.json
+│       ├── nanopb_Privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── Octicons.ttf
+│       ├── PkgInfo
+│       ├── PrivacyInfo.xcprivacy
+│       ├── RCT-Folly_privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   └── Info.plist
+│       ├── React-Core_privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── React-cxxreact_privacy.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── ReactNativeBlobUtilPrivacyInfo.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── RecaptchaEnterpriseSDKResources.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── RNImagePickerPrivacyInfo.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── RNPermissionsPrivacyInfo.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── RNSVGFilters.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   ├── RNSVGArithmeticFilter.iphoneos.metallib
+│       │   └── RNSVGCompositeXor.iphoneos.metallib
+│       ├── Sentry.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── showpass-logo-black.png
+│       ├── SimpleLineIcons.ttf
+│       ├── sp-app.ttf
+│       ├── Stripe3DS2.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Assets.car
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── PrivacyInfo.xcprivacy
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripeBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Assets.car
+│       │   ├── Info.plist
+│       │   └── PrivacyInfo.xcprivacy
+│       ├── StripeCoreBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── PrivacyInfo.xcprivacy
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── th.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripeFinancialConnectionsBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── add@3x.png
+│       │   ├── back_arrow@3x.png
+│       │   ├── bank@3x.png
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── bullet@3x.png
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cancel_circle@3x.png
+│       │   ├── check@3x.png
+│       │   ├── chevron_down@3x.png
+│       │   ├── close@3x.png
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── generic_error@3x.png
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── info@3x.png
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── link_logo@3x.png
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── panel_arrow_right@3x.png
+│       │   ├── person@3x.png
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── PrivacyInfo.xcprivacy
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── search@3x.png
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── spinner@3x.png
+│       │   ├── stripe_logo@3x.png
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── testmode@3x.png
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── warning_triangle@3x.png
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripePaymentsBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── th.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tk.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripePaymentSheetBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Assets.car
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── form_specs.json
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── PrivacyInfo.xcprivacy
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── th.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tk.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripePaymentsUIBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Assets.car
+│       │   ├── au_becs_bsb.json
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── th.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tk.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       ├── StripeUICoreBundle.bundle
+│       │   ├── _CodeSignature
+│       │   │   ├── CodeDirectory
+│       │   │   ├── CodeRequirements
+│       │   │   ├── CodeResources
+│       │   │   └── CodeSignature
+│       │   ├── Assets.car
+│       │   ├── au_becs_bsb.json
+│       │   ├── bg-BG.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ca-ES.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── cs-CZ.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── da.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── de.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── el-GR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en-GB.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── en.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es-419.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── es.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── et-EE.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fil.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr-CA.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── fr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── hu.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── id.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── Info.plist
+│       │   ├── it.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ja.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ko.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── localized_address_data.json
+│       │   ├── lt-LT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── lv-LV.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ms-MY.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── mt.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nb.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── nl.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pl-PL.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-BR.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── pt-PT.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ro-RO.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── ru.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sk-SK.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sl-SI.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── sv.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── th.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── tr.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── vi.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hans.lproj
+│       │   │   └── Localizable.strings
+│       │   ├── zh-Hant.lproj
+│       │   │   └── Localizable.strings
+│       │   └── zh-HK.lproj
+│       │       └── Localizable.strings
+│       └── Zocial.ttf
+├── artifacts
+│   ├── desktop-safari
+│   │   ├── appium
+│   │   │   └── wdio-appium.log
+│   │   ├── junit
+│   │   │   └── desktop-safari-0-0.xml
+│   │   ├── screenshots
+│   │   └── wdio
+│   │       ├── safari.smoke-0-0.log
+│   │       └── wdio.log
+│   ├── ios-app
+│   │   ├── appium
+│   │   │   └── wdio-appium.log
+│   │   ├── baseline-ios18
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791164670188
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   ├── baseline-ios18-login
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791164944795-fail-opens_Account___Login_and_shows_the_email_field.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── box-office.discovery-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── baseline-ios18-login-malloc
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791165270520-fail-opens_Account___Login_and_shows_the_email_field.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── box-office.discovery-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── baseline-ios18-webview
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791165438301-pass-finds_beta_in_a_WebView_and_returns_to_native_controls.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── wdio.log
+│   │   │       └── webview.smoke-0-0.log
+│   │   ├── box-office
+│   │   │   └── discovery
+│   │   │       ├── account.png
+│   │   │       ├── account.xml
+│   │   │       └── explore.xml
+│   │   ├── build
+│   │   │   └── mobile.app.dSYM
+│   │   │       └── Contents
+│   │   │           ├── Info.plist
+│   │   │           └── Resources
+│   │   │               ├── DWARF
+│   │   │               │   └── mobile
+│   │   │               ├── Relocations
+│   │   │               │   └── aarch64
+│   │   │               │       └── mobile.yml
+│   │   │               └── Swift
+│   │   │                   └── aarch64
+│   │   │                       ├── FBSDKCoreKit.swiftinterface
+│   │   │                       ├── RecaptchaEnterpriseSDK.swiftinterface
+│   │   │                       └── StripeTerminal.swiftinterface
+│   │   ├── check-in
+│   │   │   ├── account.png
+│   │   │   └── account.xml
+│   │   ├── develop-3.7.3-182-build.json
+│   │   ├── discovery
+│   │   │   ├── adult-selected.png
+│   │   │   ├── adult-selected.xml
+│   │   │   ├── checkout-open.png
+│   │   │   ├── checkout-open.xml
+│   │   │   ├── contexts.json
+│   │   │   ├── event-open.png
+│   │   │   ├── event-open.xml
+│   │   │   ├── event.html
+│   │   │   ├── guest-billing-address-empty.html
+│   │   │   ├── guest-billing-address-empty.png
+│   │   │   ├── guest-billing-address-empty.xml
+│   │   │   ├── guest-credit-card-empty.png
+│   │   │   ├── guest-credit-card-empty.xml
+│   │   │   ├── guest-next.png
+│   │   │   ├── guest-next.xml
+│   │   │   ├── guest-payment-controls.png
+│   │   │   ├── guest-payment-controls.xml
+│   │   │   ├── guest-payment-empty.png
+│   │   │   ├── guest-payment-empty.xml
+│   │   │   ├── guest-payment-terms.png
+│   │   │   ├── guest-payment-terms.xml
+│   │   │   ├── guest-step-three.png
+│   │   │   ├── guest-step-three.xml
+│   │   │   ├── guest-step-two.png
+│   │   │   ├── guest-step-two.xml
+│   │   │   ├── search-open.png
+│   │   │   ├── search-open.xml
+│   │   │   ├── search-result-screen.png
+│   │   │   ├── search-result-screen.xml
+│   │   │   ├── search-results.png
+│   │   │   ├── search-results.xml
+│   │   │   ├── ticket-picker.png
+│   │   │   └── ticket-picker.xml
+│   │   ├── final-ios18-preparation
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           ├── appium-1791167727974
+│   │   │           │   ├── appium
+│   │   │           │   ├── junit
+│   │   │           │   ├── screenshots
+│   │   │           │   └── wdio
+│   │   │           └── appium-1791167801053
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   │                   └── wdio.log
+│   │   ├── junit
+│   │   │   └── ios-app-0-0.xml
+│   │   ├── login-allocator-direct
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791175051019-fail-opens_Account___Login_and_shows_the_email_field.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── box-office.discovery-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── login-deployment18
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791176996730-fail-opens_Account___Login_and_shows_the_email_field.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── box-office.discovery-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── organizer-navigation
+│   │   │   ├── check-in-discovery
+│   │   │   │   ├── appium
+│   │   │   │   │   └── wdio-appium.log
+│   │   │   │   ├── junit
+│   │   │   │   │   └── ios-app-0-0.xml
+│   │   │   │   ├── screenshots
+│   │   │   │   ├── session.json
+│   │   │   │   └── wdio
+│   │   │   │       └── wdio.log
+│   │   │   ├── fix-summary
+│   │   │   │   ├── frontend-doctor.json
+│   │   │   │   └── summary.md
+│   │   │   ├── login-discovery
+│   │   │   │   ├── appium
+│   │   │   │   │   └── wdio-appium.log
+│   │   │   │   ├── junit
+│   │   │   │   │   └── ios-app-0-0.xml
+│   │   │   │   ├── screenshots
+│   │   │   │   ├── session.json
+│   │   │   │   └── wdio
+│   │   │   │       └── wdio.log
+│   │   │   └── runs
+│   │   │       ├── appium-1791174334396
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791174437297
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791174484212
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791177265740
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791477972130
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791490913813
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791491142752
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791491654363
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791492076524
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791492179804
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       ├── appium-1791492381186
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791492549524
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791492804664
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       └── appium-1791494472786
+│   │   │           ├── appium
+│   │   │           │   └── wdio-appium.log
+│   │   │           ├── junit
+│   │   │           │   └── ios-app-0-0.xml
+│   │   │           ├── screenshots
+│   │   │           ├── session.json
+│   │   │           └── wdio
+│   │   │               └── wdio.log
+│   │   ├── purchase
+│   │   │   ├── public-result.json
+│   │   │   ├── run.json
+│   │   │   └── runs
+│   │   │       ├── appium-1791157708156
+│   │   │       │   ├── appium
+│   │   │       │   ├── junit
+│   │   │       │   ├── screenshots
+│   │   │       │   └── wdio
+│   │   │       ├── appium-1791157846809
+│   │   │       │   ├── appium
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791162436694
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791162785516
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   ├── session.json
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       ├── appium-1791163424484
+│   │   │       │   ├── appium
+│   │   │       │   │   └── wdio-appium.log
+│   │   │       │   ├── junit
+│   │   │       │   │   └── ios-app-0-0.xml
+│   │   │       │   ├── screenshots
+│   │   │       │   └── wdio
+│   │   │       │       └── wdio.log
+│   │   │       └── appium-1791173991709
+│   │   │           ├── appium
+│   │   │           │   └── wdio-appium.log
+│   │   │           ├── junit
+│   │   │           │   └── ios-app-0-0.xml
+│   │   │           ├── public-result.json
+│   │   │           ├── run.json
+│   │   │           ├── screenshots
+│   │   │           ├── session.json
+│   │   │           └── wdio
+│   │   ├── repaired-ios18
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791165500694
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   ├── repaired-ios18-retry
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791165671958
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   ├── repaired-ios27-discovery
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       └── wdio.log
+│   │   ├── repaired-ios27-login
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791166595502-fail-opens_Account___Login_and_shows_the_email_field.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── box-office.discovery-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── repaired-ios27-public
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791166744485
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   │                   └── wdio.log
+│   │   ├── repaired-ios27-public-fixed
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791167216449
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   │                   └── wdio.log
+│   │   ├── repaired-ios27-public-verified-input
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791167496748
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   │                   └── wdio.log
+│   │   ├── repaired-ios27-webview
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   │   └── 1791166681819-pass-finds_beta_in_a_WebView_and_returns_to_native_controls.png
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── wdio.log
+│   │   │       └── webview.smoke-0-0.log
+│   │   ├── repaired-purchase
+│   │   │   └── purchase
+│   │   │       └── runs
+│   │   │           └── appium-1791165761399
+│   │   │               ├── appium
+│   │   │               │   └── wdio-appium.log
+│   │   │               ├── junit
+│   │   │               │   └── ios-app-0-0.xml
+│   │   │               ├── public-result.json
+│   │   │               ├── run.json
+│   │   │               ├── screenshots
+│   │   │               ├── session.json
+│   │   │               └── wdio
+│   │   ├── screenshots
+│   │   │   ├── 1791075062128-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791075152249-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791075218634-pass-opens_the_native_event_search.png
+│   │   │   ├── 1791075285492-pass-opens_the_native_event_search.png
+│   │   │   ├── 1791075348461-pass-opens_the_native_event_search.png
+│   │   │   ├── 1791075426274-pass-opens_the_native_event_search.png
+│   │   │   ├── 1791075498583-pass-opens_the_native_event_search.png
+│   │   │   ├── 1791075738984-fail-opens_Comic_Con_from_native_search.png
+│   │   │   ├── 1791076138533-fail-opens_Comic_Con_from_native_search.png
+│   │   │   ├── 1791076227117-pass-opens_Comic_Con_from_native_search.png
+│   │   │   ├── 1791076382204-fail-opens_Comic_Con_from_native_search.png
+│   │   │   ├── 1791076485993-pass-opens_Comic_Con_from_native_search.png
+│   │   │   ├── 1791084520007-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791092667739-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791092758089-pass-shows_the_employee_entry_path.png
+│   │   │   ├── 1791092805656-fail-shows_the_employee_entry_path.png
+│   │   │   ├── 1791092886656-fail-shows_the_employee_entry_path.png
+│   │   │   ├── 1791121249370-fail-opens_employee_login_from_Account.png
+│   │   │   ├── 1791121379198-fail-opens_employee_login_from_Account.png
+│   │   │   ├── 1791121612765-fail-opens_employee_login_from_Account.png
+│   │   │   ├── 1791145455317-fail-opens_employee_login_from_Account.png
+│   │   │   ├── 1791145748073-fail-opens_employee_login_from_Account.png
+│   │   │   ├── 1791148615347-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791149309396-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791150497542-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791151103616-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   ├── 1791155042956-pass-opens_the_app_and_renders_its_first_screen.png
+│   │   │   ├── 1791156967732-pass-opens_the_app_and_renders_its_first_screen.png
+│   │   │   └── 1791168012859-fail-opens_Comic_Con_from_native_search.png
+│   │   ├── session.json
+│   │   ├── startup-check
+│   │   │   ├── appium
+│   │   │   │   └── wdio-appium.log
+│   │   │   ├── junit
+│   │   │   │   └── ios-app-0-0.xml
+│   │   │   ├── screenshots
+│   │   │   ├── session.json
+│   │   │   └── wdio
+│   │   │       ├── app.smoke-0-0.log
+│   │   │       └── wdio.log
+│   │   ├── startup-page-source.xml
+│   │   ├── versions
+│   │   │   ├── ios-18
+│   │   │   │   ├── appium
+│   │   │   │   │   └── wdio-appium.log
+│   │   │   │   ├── junit
+│   │   │   │   │   └── ios-app-0-0.xml
+│   │   │   │   ├── screenshots
+│   │   │   │   │   ├── 1791093910187-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791118332351-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120249490-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120628205-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120951801-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   └── 1791166402524-pass-opens_the_app_and_renders_its_first_screen.png
+│   │   │   │   ├── session.json
+│   │   │   │   └── wdio
+│   │   │   │       ├── app.smoke-0-0.log
+│   │   │   │       └── wdio.log
+│   │   │   ├── ios-26
+│   │   │   │   ├── appium
+│   │   │   │   │   └── wdio-appium.log
+│   │   │   │   ├── junit
+│   │   │   │   │   └── ios-app-0-0.xml
+│   │   │   │   ├── screenshots
+│   │   │   │   │   ├── 1791093847530-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791118266200-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120187448-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120565680-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120889770-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   └── 1791166337206-pass-opens_the_app_and_renders_its_first_screen.png
+│   │   │   │   ├── session.json
+│   │   │   │   └── wdio
+│   │   │   │       ├── app.smoke-0-0.log
+│   │   │   │       └── wdio.log
+│   │   │   ├── ios-27
+│   │   │   │   ├── appium
+│   │   │   │   │   └── wdio-appium.log
+│   │   │   │   ├── junit
+│   │   │   │   │   └── ios-app-0-0.xml
+│   │   │   │   ├── screenshots
+│   │   │   │   │   ├── 1791120082658-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120120747-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120494278-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   ├── 1791120818555-pass-puts_the_selected_beta_app_in_the_foreground.png
+│   │   │   │   │   └── 1791166257677-pass-opens_the_app_and_renders_its_first_screen.png
+│   │   │   │   ├── session.json
+│   │   │   │   └── wdio
+│   │   │   │       ├── app.smoke-0-0.log
+│   │   │   │       └── wdio.log
+│   │   │   └── summary.json
+│   │   └── wdio
+│   │       ├── app.smoke-0-0.log
+│   │       ├── box-office.discovery-0-0.log
+│   │       ├── check-in.discovery-0-0.log
+│   │       ├── explore.discovery-0-0.log
+│   │       └── wdio.log
+│   └── ios-safari
+│       ├── appium
+│       │   └── wdio-appium.log
+│       ├── ios-18
+│       │   ├── appium
+│       │   │   └── wdio-appium.log
+│       │   ├── junit
+│       │   │   └── ios-safari-0-0.xml
+│       │   ├── screenshots
+│       │   │   └── 1791164628838-pass-loads_Showpass_beta.png
+│       │   ├── session.json
+│       │   └── wdio
+│       │       ├── safari.smoke-0-0.log
+│       │       └── wdio.log
+│       ├── junit
+│       │   └── ios-safari-0-0.xml
+│       ├── screenshots
+│       │   ├── 1791073656494-fail-loads_Showpass_beta.png
+│       │   └── 1791164181247-fail-loads_Showpass_beta.png
+│       ├── session.json
+│       └── wdio
+│           ├── safari.smoke-0-0.log
+│           └── wdio.log
+├── config
+│   ├── app-build.json
+│   ├── appium-sensitive.json
+│   ├── local-env.ts
+│   └── test-settings.ts
+├── flows
+│   └── ios
+│       ├── buyer
+│       │   ├── open-event-checkout.ts
+│       │   ├── open-event-details.ts
+│       │   ├── open-orders-home.ts
+│       │   ├── open-personal-account.ts
+│       │   ├── public-purchase.ts
+│       │   └── wait-for-account-webview.ts
+│       └── organizer
+│           └── open-dashboard.ts
+├── package-lock.json
+├── package.json
+├── README.md
+├── screens
+│   ├── ios
+│   │   ├── auth
+│   │   │   └── login.ts
+│   │   ├── buyer
+│   │   │   ├── account.ts
+│   │   │   ├── bottom-navigation.ts
+│   │   │   ├── checkout.ts
+│   │   │   ├── event-details.ts
+│   │   │   ├── explore.ts
+│   │   │   └── ticket-picker.ts
+│   │   ├── main-menu.ts
+│   │   └── organizer
+│   │       ├── dashboard.ts
+│   │       └── organization.ts
+│   └── webview
+│       └── buyer
+│           ├── account.ts
+│           ├── event.ts
+│           └── payment.ts
+├── scripts
+│   ├── account-source.test.ts
+│   ├── account-source.ts
+│   ├── appium-logging.test.ts
+│   ├── check-ios-app-build.ts
+│   ├── ci-ios-simulator.ts
+│   ├── ios-app-build.test.ts
+│   ├── ios-app-build.ts
+│   ├── ios-simulator-app.ts
+│   ├── ios-simulator-matrix.test.ts
+│   ├── ios-simulator-matrix.ts
+│   ├── local-env.test.ts
+│   ├── open-ios-viewer.sh
+│   ├── run-ios-app-versions.ts
+│   └── run-with-playwright-fixtures.ts
+├── shared
+│   ├── data
+│   │   ├── buyer-navigation.ts
+│   │   ├── checkout.ts
+│   │   ├── comic-con.ts
+│   │   └── organizer-navigation.ts
+│   ├── helpers
+│   │   ├── beta-page.ts
+│   │   ├── context-id.ts
+│   │   └── xpath-literal.ts
+│   ├── ios
+│   │   ├── system-prompts.ts
+│   │   └── text-input.ts
+│   └── purchase
+│       ├── guest.test.ts
+│       ├── guest.ts
+│       ├── invoice-api.test.ts
+│       ├── invoice-api.ts
+│       ├── run-artifacts.test.ts
+│       ├── run-artifacts.ts
+│       └── scenario.ts
+├── tests
+│   ├── app.smoke.ts
+│   ├── ios
+│   │   ├── box-office.discovery.ts
+│   │   ├── buyer.navigation.ts
+│   │   ├── explore.discovery.ts
+│   │   ├── organizer.navigation.ts
+│   │   └── public.purchase.ts
+│   ├── README.md
+│   ├── safari.smoke.ts
+│   └── webview.smoke.ts
+├── tree.text
+├── tsconfig.json
+└── wdio.conf.ts
+
+1181 directories, 1670 files

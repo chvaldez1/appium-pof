@@ -17,7 +17,7 @@
   },
   "overrides": [
     {
-      "files": ["screens/**/*.ts", "flows/**/*.ts", "tests/**/*.ts"],
+      "files": ["src/screens/**/*.ts", "src/flows/**/*.ts", "tests/**/*.ts"],
       "rules": {
         "typescript/await-thenable": "off"
       }

@@ -47,7 +47,7 @@ This path gets a new reviewer from clone to a **read-only launch test**. The sou
 
    Wait for the terminal to report **1 passing**. This test brings Showpass Beta to the foreground and checks that Explore appears. It does not log in, buy, or scan. Results are in `artifacts/ios-app/junit/`. Appium starts and stops with the command; you do not need a separate server. The app remains installed, so later runs need only `npm run test:launch`.
 
-To check **Account → Login**, run `npm run test:login`. It opens the login screen and checks for the email field. Tested simulator builds exited before the form appeared; the test reports that exit explicitly. Check the reported error before classifying a new failure. `screens/ios/auth/login.ts` holds selectors and actions and is not a runnable test. See the [test catalog](tests/README.md) for guest checkout, Organizer, Safari, and other commands.
+To check **Account → Login**, run `npm run test:login`. It opens the login screen and checks for the email field. Tested simulator builds exited before the form appeared; the test reports that exit explicitly. Check the reported error before classifying a new failure. `src/screens/native/ios/auth/login.ts` holds selectors and actions and is not a runnable test. See the [test catalog](tests/README.md) for guest checkout, Organizer, Safari, and other commands.
 
 ## Current proof
 
@@ -60,20 +60,23 @@ To check **Account → Login**, run `npm run test:login`. It opens the login scr
 
 ## Where to look
 
-- `tests/` contains runnable tests. Named `npm run test:*` commands choose a spec and print its test title and result.
-- `screens/ios/` contains reusable iPhone page objects; `screens/webview/` contains WebView page objects shared across platforms. `flows/ios/` combines them into journeys.
-- `shared/` holds test data, helpers, and purchase/order checks. `config/test-settings.ts` holds targets and named waits.
+- `tests/native/`, `tests/hybrid/`, and `tests/mobile-web/` contain runnable E2E specs. `tests/unit/` contains device-free unit tests.
+- `src/screens/native/ios/` contains iPhone page objects; `src/screens/webviews/` contains embedded web page objects. `src/flows/buyer/ios/` and `src/flows/organizer/ios/` coordinate those journeys.
+- `src/api/` handles backend reads; `src/flows/purchase/` verifies orders and tickets; `src/data/` contains typed fixtures and generated guest inputs.
+- `src/support/` contains context, input, permission, selector, device, and artifact helpers. `src/setup/` contains session hooks.
+- `config/wdio.*.conf.ts` holds shared and platform runner options. Root `wdio.conf.ts` preserves the existing entry point; `config/specs.ts` registers all eight E2E specs. `config/test-settings.ts` holds targets and named waits.
+- [Architecture](docs/architecture.md), [local setup](docs/local-setup.md), and [testing conventions](docs/testing-conventions.md) explain the framework.
 - [tests/README.md](tests/README.md) lists all current test commands and safe purchase recovery.
 - [apps/README.md](apps/README.md) holds the full Beta simulator build and debugging details.
 
-Run `npm run check` before sharing code changes; it checks lint, formatting, types, and unit tests without launching the app.
+Run `npm run check` before sharing code changes; it checks lint, formatting, types, unit tests, and WebdriverIO spec discovery without launching the app.
 
 Use import aliases instead of climbing folders:
 
 ```ts
-import { iosLoginPage } from '@screens/ios/auth/login.ts';
+import { iosLoginPage } from '@screens/native/ios/auth/login.ts';
 import { timeoutMs } from '@config/test-settings.ts';
-import { contextId } from '@shared/helpers/context-id.ts';
+import { contextId } from '@support/contexts/context-id.ts';
 ```
 
 Aliases are defined in `tsconfig.json` and resolved by the TypeScript/tsx runtime used by the scripts and WebdriverIO.

@@ -1,23 +1,27 @@
 import '@config/local-env.ts';
 
 import { spawn } from 'node:child_process';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { e2eSpecs } from '@config/specs.ts';
+import { getPurchaseItems, listPurchaseInvoices } from '@api/purchase-invoices.ts';
 import {
   assertPurchaseItem,
-  getPurchaseItems,
-  listPurchaseInvoices,
   selectVerifiedInvoice,
   waitForIssuedTicket,
-} from '@shared/purchase/invoice-api.ts';
-import { adultTicketPurchase } from '@shared/purchase/scenario.ts';
-import { purchaseRunDirectory, readPurchaseRunMarker } from '@shared/purchase/run-artifacts.ts';
+} from '@flows/purchase/verify-purchase.ts';
+import { adultTicketPurchase } from '@data/purchase-scenario.ts';
+import {
+  purchaseRunDirectory,
+  readPurchaseRunMarker,
+  writePurchaseResult,
+} from '@support/artifacts/run-artifacts.ts';
 import {
   parsePlaywrightAccount,
   resolveGuestDetails,
   resolveOrganizerAccount,
   type AccountValues,
-} from '@scripts/account-source.ts';
+} from '@data/account-source.ts';
 
 // Local convenience for Playwright account fixtures. Read only literal values;
 // do not execute Playwright's module or its imports.
@@ -46,7 +50,6 @@ if (process.argv[2] === 'preflight') {
 if (process.argv[2] === 'recover-public') {
   const runTag = process.argv[3];
   if (!runTag) throw new Error('Pass the exact appium-<timestamp> purchase run tag.');
-  const resultPath = purchaseRunDirectory(runTag);
   const marker = readPurchaseRunMarker(runTag);
   if (!marker) {
     throw new Error(`No recovery marker exists for ${runTag}; no purchase can be attributed to this run.`);
@@ -63,7 +66,6 @@ if (process.argv[2] === 'recover-public') {
   const items = await getPurchaseItems(verified, credentials);
   assertPurchaseItem(items, adultTicketPurchase);
   await waitForIssuedTicket(verified, credentials, adultTicketPurchase);
-  mkdirSync(resultPath, { recursive: true });
   const result = {
     transactionId: verified.transaction_id,
     venueId: verified.venue_id,
@@ -77,15 +79,15 @@ if (process.argv[2] === 'recover-public') {
     uiConfirmed: null,
     verifiedFromApi: true,
   };
-  writeFileSync(resolve(resultPath, 'public-result.json'), JSON.stringify(result, null, 2));
+  writePurchaseResult(runTag, result);
   console.log(JSON.stringify(result, null, 2));
   process.exit(0);
 }
 const spec = {
-  discovery: 'ios/explore.discovery.ts',
-  'guest-discovery': 'ios/explore.discovery.ts',
-  'organizer-navigation': 'ios/organizer.navigation.ts',
-  public: 'ios/public.purchase.ts',
+  discovery: e2eSpecs.exploreDiscovery,
+  'guest-discovery': e2eSpecs.exploreDiscovery,
+  'organizer-navigation': e2eSpecs.organizerNavigation,
+  public: e2eSpecs.publicPurchase,
 }[process.argv[2] ?? 'public'];
 if (!spec)
   throw new Error(
@@ -115,43 +117,39 @@ if (purchaseMode) {
   );
 }
 if (navigationMode) console.log(`Organizer navigation JUnit: ${sessionArtifacts}`);
-const child = spawn(
-  resolve('node_modules', '.bin', 'wdio'),
-  ['run', './wdio.conf.ts', '--spec', `./tests/${spec}`],
-  {
-    cwd: process.cwd(),
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      TARGET: 'ios-app',
-      PURCHASE_RUN: navigationMode ? '0' : '1',
-      ORGANIZER_NAVIGATION_RUN: navigationMode ? '1' : '0',
-      RESET_APP: process.env.RESET_APP ?? (navigationMode ? '0' : '1'),
-      ...(sessionArtifacts ? { APPIUM_SESSION_ARTIFACT_DIR: sessionArtifacts } : {}),
-      ...(guestMode ? { PUBLIC_RUN_TAG: runTag } : {}),
-      ...(!guestMode && !navigationMode
-        ? {
-            SHOWPASS_CUSTOMER_EMAIL: customer().userEmail,
-            SHOWPASS_CUSTOMER_PASSWORD: customer().userPassword,
-          }
-        : {}),
-      ...(purchaseMode || navigationMode
-        ? {
-            SHOWPASS_ORGANIZER_EMAIL: organizer.userEmail,
-            SHOWPASS_ORGANIZER_PASSWORD: organizer.userPassword,
-          }
-        : {}),
-      ...(guest
-        ? {
-            PUBLIC_CHECKOUT_MODE: 'guest',
-            PUBLIC_GUEST_EMAIL: guest.email,
-            PUBLIC_GUEST_NAME: guest.name,
-            PUBLIC_GUEST_PHONE: guest.phone,
-          }
-        : {}),
-    },
+const child = spawn(resolve('node_modules', '.bin', 'wdio'), ['run', './wdio.conf.ts', '--spec', spec], {
+  cwd: process.cwd(),
+  stdio: 'inherit',
+  env: {
+    ...process.env,
+    TARGET: 'ios-app',
+    PURCHASE_RUN: navigationMode ? '0' : '1',
+    ORGANIZER_NAVIGATION_RUN: navigationMode ? '1' : '0',
+    RESET_APP: process.env.RESET_APP ?? (navigationMode ? '0' : '1'),
+    ...(sessionArtifacts ? { APPIUM_SESSION_ARTIFACT_DIR: sessionArtifacts } : {}),
+    ...(guestMode ? { PUBLIC_RUN_TAG: runTag } : {}),
+    ...(!guestMode && !navigationMode
+      ? {
+          SHOWPASS_CUSTOMER_EMAIL: customer().userEmail,
+          SHOWPASS_CUSTOMER_PASSWORD: customer().userPassword,
+        }
+      : {}),
+    ...(purchaseMode || navigationMode
+      ? {
+          SHOWPASS_ORGANIZER_EMAIL: organizer.userEmail,
+          SHOWPASS_ORGANIZER_PASSWORD: organizer.userPassword,
+        }
+      : {}),
+    ...(guest
+      ? {
+          PUBLIC_CHECKOUT_MODE: 'guest',
+          PUBLIC_GUEST_EMAIL: guest.email,
+          PUBLIC_GUEST_NAME: guest.name,
+          PUBLIC_GUEST_PHONE: guest.phone,
+        }
+      : {}),
   },
-);
+});
 child.on('exit', (code, signal) => {
   if (signal) process.kill(process.pid, signal);
   else process.exitCode = code ?? 1;

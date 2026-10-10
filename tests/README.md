@@ -2,7 +2,7 @@
 
 Complete the [first iPhone run](../README.md#first-iphone-run) once. Choose `IOS_UDID` in the ignored `.env.local` file, then run these commands from the Appium repository root. Appium starts and stops automatically; the terminal prints the selected test title and its final pass/fail result. Shell/CI values override local settings.
 
-**Run a named command, not a file under `screens/`.** For example, `screens/ios/auth/login.ts` is the reusable login page object. `npm run test:login` runs the spec that opens that screen and checks for its email field.
+**Run a named command, not a file under `src/screens/`.** For example, `src/screens/native/ios/auth/login.ts` is the reusable login page object. `npm run test:login` runs the spec that opens that screen and checks for its email field.
 
 | What to check             | Command                                                   | Effect                                                                                                     |
 | ------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -20,12 +20,12 @@ Complete the [first iPhone run](../README.md#first-iphone-run) once. Choose `IOS
 To run a spec without an npm alias, pass its path to WebdriverIO. For example, this is the same launch check as `npm run test:launch`:
 
 ```sh
-REUSE_INSTALLED_APP=1 TARGET=ios-app npm test -- --spec ./tests/app.smoke.ts
+REUSE_INSTALLED_APP=1 TARGET=ios-app npm test -- --spec ./tests/native/app-smoke.spec.ts
 ```
 
 ## Accounts and purchase results
 
-Public purchase commands use fresh local app state (`RESET_APP=1` by default) so an earlier basket cannot add another ticket. They reuse the installed build; no source rebuild is required. For the optional discovery diagnostic, use `RESET_APP=1 TARGET=ios-app PUBLIC_CHECKOUT_MODE=guest npm test -- --spec ./tests/ios/explore.discovery.ts` to open the guest form without entering personal information or paying.
+Public purchase commands use fresh local app state (`RESET_APP=1` by default) so an earlier basket cannot add another ticket. They reuse the installed build; no source rebuild is required. For the optional discovery diagnostic, use `RESET_APP=1 TARGET=ios-app PUBLIC_CHECKOUT_MODE=guest npm test -- --spec ./tests/hybrid/checkout/ios/explore-discovery.spec.ts` to open the guest form without entering personal information or paying.
 
 `npm run test:webview` opens Comic Con in the installed iPhone app, checks its embedded beta page, and returns to native controls. It reuses the public purchase flow and does not submit payment. The standalone `ios-webview` and `android-webview` targets require a separate harness app; no harness build is included in this repository.
 
@@ -43,6 +43,7 @@ After `Invoice read preflight passed`, Appium starts its server and iPhone autom
 - **iOS 26 on this Mac:** Comic Con remained on Loading event. The October 4 19:07:41 WebContent report shows JavaScriptCore `PAC_EXCEPTION`; a similar crash occurred October 3, before the folder/logging changes. A second October 4 crash belonged to the duplicate simulator, which was removed. Two simulators causing the crash is unproven. The same app JavaScript opens the event on iOS 18; the user reports it opens on their real iPhone. Mobile Safari on iOS 26 also failed during remote browser access. These are blocked, not passed.
 - **Signing:** Rebuilt with Xcode signing enabled; the executable now embeds `application-identifier`. The new iOS 18 process no longer logged Keychain `-34018`. The former unsigned recipe lacked that identity. This repairs the local build recipe; it does not establish the cause of the WebKit crash. See [Apple's entitlement guidance](https://developer.apple.com/forums/thread/114456).
 - **Login:** The older build on iOS 18 and fresh rebuilt app on iOS 27 abort in `swift_task_dealloc` when opening Login, before email entry. Organizer and personal-account navigation remain blocked there; their individual destinations were not checked. A related [Google reCAPTCHA SDK report](https://github.com/GoogleCloudPlatform/recaptcha-enterprise-mobile-sdk/issues/183) describes this signature. Its runtime workaround did not resolve our crash and was removed. SDK causality still requires symbolicated confirmation.
+  The user reproduced the same `SIGABRT` signature on the iOS 26 simulator at October 4, 22:28:24 while running `test:organizer:navigation`. Its binary UUID matches the saved fresh-build dSYM; symbolication still returns `<deduplicated_symbol>`. Login initializes native reCAPTCHA on form mount (`packages/mobile/src/util/recaptcha/withRecaptcha.tsx` in the frontend repository), making that initialization a source-backed investigation point, not a confirmed cause. No additional test was launched for this report review.
 - **Desktop Safari:** Enabling automation was approved, but macOS still requires owner authentication. Run `sudo /usr/bin/safaridriver --enable` in your own Terminal and authenticate locally, then run `TARGET=desktop-safari npm test`. Do not share the Mac password. This test has not passed yet.
 - **Android and standalone harnesses:** Not executed; no Android build/emulator or standalone harness build is available here. Scanning and four-payment mobile Point of sale purchases are not implemented/proven by the current login-entry spec. Hosted CI is not part of this local verification.
 
@@ -52,4 +53,12 @@ After `Invoice read preflight passed`, Appium starts its server and iPhone autom
 
 Set `SHOWPASS_PERSONAL_EMAIL` and `SHOWPASS_PERSONAL_PASSWORD` privately, then run `REUSE_INSTALLED_APP=1 RESET_APP=1 npm run test:buyer:navigation`. It checks bottom tabs and account screens/WebViews; tested simulator builds exited at Login before it could reach them.
 
-`npm run check` checks lint, formatting, types, and unit tests without launching an app.
+`npm run check` checks lint, formatting, types, unit tests, and WebdriverIO spec discovery without launching an app.
+
+## Finding the test body
+
+E2E files end in `.spec.ts`; unit tests end in `.test.ts`. The `async` callback passed to Mocha's `it()` is the E2E test body. WebdriverIO creates the Appium session and runs `src/setup/session-hooks.ts` before that body starts.
+
+The guest purchase spec is `tests/hybrid/checkout/ios/public-purchase.spec.ts`. It reads validated inputs from `config/purchase-settings.ts`, prepares checkout through `src/flows/buyer/ios/public-purchase.ts`, submits once, and verifies the saved order and issued ticket. The launcher supplies credentials and guest details through the child process environment; see [testing conventions](../docs/testing-conventions.md#purchase-inputs-and-environment-variables).
+
+Run `npm run test:discovery` to check all registered specs without starting Appium. Default target selection runs one smoke test; it never includes unit tests or the payment spec. Use the named purchase command so the account bridge, purchase timeout, fresh app state, and sensitive logging settings are applied together.

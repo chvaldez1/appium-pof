@@ -6,40 +6,72 @@ import { buyerAccountPage } from '@screens/native/ios/buyer/account.ts';
 import { buyerBottomBar } from '@screens/native/ios/buyer/bottom-navigation.ts';
 import { mainMenuPage } from '@screens/native/ios/main-menu.ts';
 import { organizationSelectionPage } from '@screens/native/ios/organizer/organization.ts';
-import { dismissOptionalNotificationPrompt } from '@support/permissions/ios-system-prompts.ts';
+import { dismissPresentIosSystemPrompt } from '@support/permissions/ios-system-prompts.ts';
 
 const organizationName =
   process.env.SHOWPASS_ORGANIZATION_NAME ?? 'Organization For System Gateway Payment Intent';
 
+const screens = {
+  dashboard: () => organizerDashboardPage.prompt.isDisplayed(),
+  organization: () => organizationSelectionPage.title.isDisplayed(),
+  menu: () => mainMenuPage.title.isDisplayed(),
+  login: () => iosLoginPage.email.isDisplayed(),
+  buyer: () => buyerBottomBar.tab('Account').isDisplayed(),
+};
+type Screen = keyof typeof screens;
+
+async function waitForScreen(candidates: Screen[], timeout: number, timeoutMsg: string): Promise<Screen> {
+  let screen: Screen | undefined;
+  await browser.waitUntil(
+    async () => {
+      if (await dismissPresentIosSystemPrompt(browser)) return false;
+      for (const candidate of candidates) {
+        if (await screens[candidate]()) {
+          screen = candidate;
+          return true;
+        }
+      }
+      return false;
+    },
+    { timeout, timeoutMsg },
+  );
+  if (!screen) throw new Error(timeoutMsg);
+  return screen;
+}
+
 async function selectOrganization(): Promise<void> {
-  await dismissOptionalNotificationPrompt();
+  await dismissPresentIosSystemPrompt(browser);
   await organizationSelectionPage.select(organizationName);
-  await organizerDashboardPage.prompt.waitForDisplayed({ timeout: timeoutMs.pageLoad });
+  await waitForScreen(['dashboard'], timeoutMs.pageLoad, 'The Organizer dashboard did not render.');
 }
 
 export async function openOrganizerDashboard({ allowLogin }: { allowLogin: boolean }): Promise<void> {
-  await browser.activateApp(appId);
-  await browser.waitUntil(
-    async () =>
-      (await organizerDashboardPage.prompt.isDisplayed()) ||
-      (await organizationSelectionPage.title.isDisplayed()) ||
-      (await mainMenuPage.title.isDisplayed()) ||
-      (await iosLoginPage.email.isDisplayed()) ||
-      (await buyerBottomBar.tab('Account').isDisplayed()),
-    { timeout: timeoutMs.pageLoad, timeoutMsg: 'The app did not show a usable starting screen.' },
-  );
-  if (await organizerDashboardPage.prompt.isDisplayed()) return;
-  if (await organizationSelectionPage.title.isDisplayed()) return selectOrganization();
-  if ((await mainMenuPage.title.isDisplayed()) && (await mainMenuPage.dashboard.isDisplayed())) {
-    await mainMenuPage.openDashboard();
-    await browser.waitUntil(
-      async () =>
-        (await organizerDashboardPage.prompt.isDisplayed()) ||
-        (await organizationSelectionPage.title.isDisplayed()),
-      { timeout: timeoutMs.uiNavigation, timeoutMsg: 'Dashboard did not open after selecting it.' },
+  const started = performance.now();
+  const reportReady = (authentication: 'retained session' | 'login submitted') => {
+    console.log(
+      `Organizer dashboard ready in ${((performance.now() - started) / 1000).toFixed(1)}s (${authentication}).`,
     );
-    if (await organizerDashboardPage.prompt.isDisplayed()) return;
-    return selectOrganization();
+  };
+  await browser.activateApp(appId);
+  const screen = await waitForScreen(
+    ['dashboard', 'organization', 'menu', 'login', 'buyer'],
+    timeoutMs.pageLoad,
+    'The app did not show a usable starting screen.',
+  );
+  if (screen === 'dashboard') return reportReady('retained session');
+  if (screen === 'organization') {
+    await selectOrganization();
+    return reportReady('retained session');
+  }
+  if (screen === 'menu' && (await mainMenuPage.dashboard.isDisplayed())) {
+    await mainMenuPage.openDashboard();
+    const destination = await waitForScreen(
+      ['dashboard', 'organization'],
+      timeoutMs.uiNavigation,
+      'Dashboard did not open after selecting it.',
+    );
+    if (destination === 'organization') await selectOrganization();
+    return reportReady('retained session');
   }
 
   if (!allowLogin) {
@@ -51,8 +83,8 @@ export async function openOrganizerDashboard({ allowLogin }: { allowLogin: boole
     throw new Error('Set SHOWPASS_ORGANIZER_EMAIL and SHOWPASS_ORGANIZER_PASSWORD.');
   }
 
-  if (!(await iosLoginPage.email.isDisplayed())) {
-    if (await mainMenuPage.title.isDisplayed()) {
+  if (screen !== 'login') {
+    if (screen === 'menu') {
       await mainMenuPage.openLogin();
     } else {
       await buyerBottomBar.open('Account');
@@ -60,14 +92,11 @@ export async function openOrganizerDashboard({ allowLogin }: { allowLogin: boole
     }
   }
   await iosLoginPage.signIn(emailAddress, password);
-  await browser.waitUntil(
-    async () =>
-      (await organizationSelectionPage.title.isDisplayed()) ||
-      (await organizerDashboardPage.prompt.isDisplayed()),
-    {
-      timeout: timeoutMs.customerLogin,
-      timeoutMsg: 'Organizer login did not reach organization selection or the dashboard.',
-    },
+  const destination = await waitForScreen(
+    ['dashboard', 'organization'],
+    timeoutMs.customerLogin,
+    'Organizer login did not reach organization selection or the dashboard.',
   );
-  if (!(await organizerDashboardPage.prompt.isDisplayed())) await selectOrganization();
+  if (destination === 'organization') await selectOrganization();
+  reportReady('login submitted');
 }

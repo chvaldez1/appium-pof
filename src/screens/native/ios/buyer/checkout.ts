@@ -12,9 +12,12 @@ export const checkoutStepText = {
 
 class IosGuestCheckoutPage {
   async waitForTotal(scenario: PurchaseScenario): Promise<void> {
-    assert.ok(
-      (await browser.getPageSource()).includes(expectedCardTotalText(scenario)),
-      `${scenario.ticketName} card total must be ${expectedCardTotalText(scenario)}.`,
+    await browser.waitUntil(
+      async () => (await browser.getPageSource()).includes(expectedCardTotalText(scenario)),
+      {
+        timeout: timeoutMs.uiNavigation,
+        timeoutMsg: `${scenario.ticketName} card total must be ${expectedCardTotalText(scenario)}.`,
+      },
     );
   }
 

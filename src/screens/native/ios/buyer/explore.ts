@@ -1,5 +1,5 @@
-import { $, browser } from '@wdio/globals';
-import { pauseMs, timeoutMs } from '@config/test-settings.ts';
+import { $ } from '@wdio/globals';
+import { timeoutMs } from '@config/test-settings.ts';
 import { xpathLiteral } from '@support/selectors/xpath-literal.ts';
 import { enterIosText } from '@support/input/ios-text-input.ts';
 
@@ -24,13 +24,11 @@ class IosExplorePage {
   }
   async enterEventName(name: string): Promise<void> {
     await enterIosText(await this.searchField, name);
-    await browser.pause(pauseMs.searchSuggestions);
   }
   async submitSearch(): Promise<void> {
     await this.searchSubmit.waitForDisplayed({ timeout: timeoutMs.uiNavigation });
     await this.searchSubmit.waitForEnabled({ timeout: timeoutMs.uiControl });
     await this.searchSubmit.click();
-    await browser.pause(pauseMs.searchResults);
   }
   async openEventResult(name: string): Promise<void> {
     await this.eventBanner(name).waitForDisplayed({ timeout: timeoutMs.uiNavigation });

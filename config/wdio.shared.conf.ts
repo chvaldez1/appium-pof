@@ -12,7 +12,13 @@ const isWebView = target.endsWith('-webview');
 const purchaseRun = process.env.PURCHASE_RUN === '1';
 const organizerNavigationRun = process.env.ORGANIZER_NAVIGATION_RUN === '1';
 const buyerNavigationRun = process.env.BUYER_NAVIGATION_RUN === '1';
-const sensitiveRun = purchaseRun || organizerNavigationRun || buyerNavigationRun;
+// Direct --spec runs can also reuse authenticated state or enter credentials.
+const sensitiveRun =
+  target.endsWith('-app') ||
+  target.endsWith('-webview') ||
+  purchaseRun ||
+  organizerNavigationRun ||
+  buyerNavigationRun;
 if (!isAndroid && process.platform !== 'darwin') {
   throw new Error(`${target} requires macOS on the Appium host.`);
 }
@@ -55,7 +61,7 @@ export function createSharedConfig(
     exclude: [resolve(projectRoot, 'tests/unit/**')],
     capabilities: [capabilities],
     baseUrl: baseURL,
-    logLevel: sensitiveRun ? 'error' : 'info',
+    logLevel: sensitiveRun ? 'silent' : 'info',
     outputDir: resolve(output, 'wdio'),
     waitforTimeout: timeoutMs.uiNavigation,
     connectionRetryTimeout: timeoutMs.connectionRetry,
@@ -85,6 +91,6 @@ export function createSharedConfig(
         },
       ],
     ],
-    ...createSessionHooks({ target, output, sensitiveRun }),
+    ...createSessionHooks({ target, output, sensitiveRun, deferSystemPrompts: organizerNavigationRun }),
   };
 }

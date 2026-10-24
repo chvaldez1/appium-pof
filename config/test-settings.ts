@@ -33,8 +33,6 @@ export const timeoutMs = {
 
 export const pauseMs = {
   nativeTextCommit: 500,
-  searchSuggestions: 1_500,
-  searchResults: 2_500,
   checkoutTransition: 1_500,
   guestForm: 3_000,
   cardMethod: 2_000,

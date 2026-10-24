@@ -94,8 +94,8 @@ Root `wdio.conf.ts` dispatches by the existing `TARGET` value. Safari targets us
 
 - Existing app IDs, reset/reuse flags, build checks, timeouts, WebView options, external-Appium support, and Android harness options remain available.
 - `config/local-env.ts` still loads the ignored root `.env.local`, preserving shell and CI overrides. One beta endpoint remains in `config/test-settings.ts`; no speculative staging configuration was added.
-- `PURCHASE_RUN`, `ORGANIZER_NAVIGATION_RUN`, and `BUYER_NAVIGATION_RUN` retain sensitive logging and screenshot behavior. The purchase launcher sets these before WebdriverIO starts. An external Appium server remains the caller's responsibility.
+- App and WebView targets protect logs and disable automatic hook screenshots regardless of launcher flags. Run flags still select scenario behavior and the purchase timeout. An external Appium server remains the caller's responsibility.
 - JUnit, session metadata, screenshots, and payment recovery files retain their artifact paths. Recovery reads legacy markers as before and never submits payment.
 - The version matrix remains sequential. Simulator signing and the build recipe in `apps/README.md` are unchanged.
 
-See [testing conventions](testing-conventions.md), [local setup](local-setup.md), and the [migration report](refactor-report.md).
+See [testing conventions](testing-conventions.md), [local setup](local-setup.md), and [Appium coding standards](appium-coding-standards.md).

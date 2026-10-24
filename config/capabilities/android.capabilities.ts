@@ -10,7 +10,7 @@ export function createAndroidCapabilities(): WebdriverIO.Capabilities {
     'appium:udid': requiredSetting('ANDROID_SERIAL', target),
     'appium:newCommandTimeout': appiumCommandTimeoutSeconds,
     'appium:adbExecTimeout': timeoutMs.pageLoad,
-    ...appCapabilities(resolveAppPath('.apk')),
+    ...appCapabilities(resolveAppPath('.apk', process.env.REUSE_INSTALLED_APP === '1')),
     'appium:appWaitActivity': '*',
     ...(target.endsWith('-webview')
       ? { 'appium:ensureWebviewsHavePages': true, 'appium:enableWebviewDetailsCollection': true }

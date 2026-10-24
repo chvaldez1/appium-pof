@@ -51,14 +51,17 @@ To check **Account → Login**, run `npm run test:login`. It opens the login scr
 
 ## Current proof
 
+- On October 22, 2026, all eight Organizer navigation checks passed on iOS 26.3 with the unmodified frontend build 3.7.3 (185), after the operator disabled the CAPTCHA switch. The timing follow-up reduced test execution from 93.2 to 52.0 seconds with the same eight checks and restarts. These runs reused an authenticated session; fresh login was not independently established. The coding review's WebView and checkout changes have passed local checks and still need device verification.
 - The Beta launch check passed on iOS 27, 26, and 18 simulators on October 4, 2026.
-- This machine's ignored `.env.local` selects Showpass QA iPhone iOS 18 (18.6), where the final guest preparation check passed. Keep your own device UUID in that file.
+- Guest preparation was previously verified on iOS 18.6. Select your own current simulator through the ignored `.env.local`; do not copy a private device UUID into source.
 - The freshly rebuilt 3.7.2 (180) app passed guest checkout preparation on iOS 18.6. One $25.46 Adult purchase was completed and its saved Mobile order, charge, and issued ticket were verified. The original run exposed an incorrect website-source assertion; that assertion was corrected and the same order was recovered without another payment. The full payment spec was not resubmitted after that correction.
 - Mobile Safari passed on iOS 18.6; the event WebView passed on iOS 18.6 and 27.0. On this Mac, iOS 26 event loading is blocked by a WebKit crash; see the test catalog for evidence.
-- Employee Login exited on the tested simulator builds before Organizer navigation or mobile Point of sale could run. Ticket scanning and mobile Point of sale purchase are not proven by Appium yet.
+- Earlier simulator builds exited on Employee Login. The later Organizer navigation pass does not establish fresh-login coverage or prove ticket scanning and mobile Point of sale purchases.
 - Hosted Safari and app-purchase CI runs are still to be verified.
 
 ## Where to look
+
+- [Appium coding standards](docs/appium-coding-standards.md) explains good tests across XCUITest, UiAutomator2, and Safari, with examples and review findings.
 
 - `tests/native/`, `tests/hybrid/`, and `tests/mobile-web/` contain runnable E2E specs. `tests/unit/` contains device-free unit tests.
 - `src/screens/native/ios/` contains iPhone page objects; `src/screens/webviews/` contains embedded web page objects. `src/flows/buyer/ios/` and `src/flows/organizer/ios/` coordinate those journeys.

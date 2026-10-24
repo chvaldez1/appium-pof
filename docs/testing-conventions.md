@@ -52,7 +52,9 @@ The purchase test reads as:
 
 `src/flows/buyer/ios/public-purchase.ts` coordinates native controls and the payment WebView. `src/api/purchase-invoices.ts` owns HTTP reads. `src/flows/purchase/verify-purchase.ts` owns reusable scenario checks and polling. `src/support/artifacts/run-artifacts.ts` owns recovery file operations. The spec retains the scenario's assertions and the order of these operations.
 
-Use the named purchase command so `PURCHASE_RUN=1`, the extended timeout, reset behavior, and sensitive logging are applied together. Direct spec invocation still requires the existing runtime inputs and run flags. Do not print card numbers, CVCs, passwords, or private account values in logs or shared artifacts.
+Use the named purchase command so `PURCHASE_RUN=1`, the extended timeout, reset behavior, and fixture inputs are applied together. Direct spec invocation still requires the existing runtime inputs and run flags. All app and WebView targets apply sensitive logging even when a spec is invoked directly: WebdriverIO command logs are silent, managed Appium payloads are redacted, and automatic hook screenshots are disabled. Explicit diagnostic captures inside a spec still require a known safe screen; an external Appium server must apply its own log filtering. Do not print card numbers, CVCs, passwords, or private account values in logs or shared artifacts.
+
+See [Appium coding standards](appium-coding-standards.md) for driver selection, selectors, waits, contexts, session state, examples, and the review findings.
 
 ## Validation and reporting
 

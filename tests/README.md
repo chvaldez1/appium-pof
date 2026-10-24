@@ -10,7 +10,7 @@ Complete the [first iPhone run](../README.md#first-iphone-run) once. Choose `IOS
 | Login screen opens        | `npm run test:login`                                      | Read-only; checks Account → Login. Tested simulator builds have exited here.                               |
 | Guest checkout before Pay | `REUSE_INSTALLED_APP=1 npm run test:public:dry-run`       | Fills one Adult ticket checkout; does not submit payment.                                                  |
 | Guest purchase and order  | `REUSE_INSTALLED_APP=1 npm run test:public`               | Submits one beta test-card payment and verifies the order and ticket. Creates a test order.                |
-| Organizer screens         | `REUSE_INSTALLED_APP=1 npm run test:organizer:navigation` | Checks eight destinations after employee login; currently blocked at Login on tested builds.               |
+| Organizer screens         | `REUSE_INSTALLED_APP=1 npm run test:organizer:navigation` | Checks eight destinations, reusing a session or logging in when needed; restarts between destinations.     |
 | Three iOS versions        | `npm run test:ios:versions`                               | Launches on iOS 27, 26, and 18; no login or purchase. Run `npm run test:ios:versions -- --list` first.     |
 | Desktop Safari            | `TARGET=desktop-safari npm test`                          | Checks the beta page loads. Install the Safari Appium driver once with `npx appium driver install safari`. |
 | iPhone Safari             | `TARGET=ios-safari npm test`                              | Checks the beta page loads in iPhone Safari.                                                               |
@@ -35,7 +35,22 @@ The purchase runner prints an `appium-<timestamp>` tag and saves results under `
 
 After `Invoice read preflight passed`, Appium starts its server and iPhone automation session before the app begins moving. Watch the device selected by `IOS_UDID`; opening a different simulator window does not change the test's device. Purchase server logs redact command details while retaining the startup message needed to start the test.
 
-## Latest verification — October 4, 2026
+## Organizer navigation timing — October 22, 2026
+
+On iOS 26.3 with Showpass Beta 3.7.3 (185), one sequential before/after comparison passed all eight destinations in both runs:
+
+| Measurement                                    | Before       | After        |
+| ---------------------------------------------- | ------------ | ------------ |
+| Test execution reported by JUnit               | 93.2 seconds | 52.0 seconds |
+| Full command, including Appium startup/cleanup | 148 seconds  | 76 seconds   |
+
+The test execution was about 44% shorter. Full-command timing also includes variable driver startup, so do not attribute every second of that reduction to the code change.
+
+The named Organizer command lets the flow handle location/notification prompts during screen-readiness polling instead of paying two startup grace windows. Organization selection no longer waits five seconds for an absent notification prompt. The flow also reuses the detected screen state and prints dashboard setup time plus `retained session` or `login submitted`.
+
+Screen/content assertions and restarts between destinations remain. Both measured runs reused the existing account session; fresh login and first-time permission dialogs were not exercised. Other journeys retain their existing startup prompt handling. No frontend changes or payments were involved.
+
+## Earlier verification — October 4, 2026
 
 - **Guest purchase, iOS 18.6:** The fresh 3.7.2 (180) build passed preparation through the payment form, including a final rerun after the input and simulator-preflight fixes. One Adult order was completed for $25.46 with card ending 4242. Backend recovery verified one order, its charge ID, `psp_mobile`, the Adult item, and its issued ticket. The original full run failed an incorrect `psp_web` expectation; the expectation now matches backend `PLATFORM_MOBILE` and frontend `getPublicPurchasePlatform()`. Recovery did not submit another payment and did not separately re-prove UI confirmation. The full spec was not resubmitted after this correction.
 - **Mobile Safari, iOS 18.6, and event WebView, iOS 18.6/27.0:** Passed. The WebView check opened Comic Con and returned to native controls without payment. iOS 27 guest preparation remains unverified: native text entry was unreliable, and its formatted phone field could not be reliably cleared. The plain-text helper now verifies entered text and makes one bounded, slower retry; masked phone/card/password controls retain their separate handling.

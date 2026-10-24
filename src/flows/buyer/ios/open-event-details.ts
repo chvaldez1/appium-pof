@@ -1,9 +1,8 @@
-import assert from 'node:assert/strict';
 import { browser } from '@wdio/globals';
 import { iosExplorePage } from '@screens/native/ios/buyer/explore.ts';
 import { iosEventDetailsPage } from '@screens/native/ios/buyer/event-details.ts';
 import { eventWebviewPage } from '@screens/webviews/buyer/event.ts';
-import { contextId } from '@support/contexts/context-id.ts';
+import { switchToWebview } from '@support/contexts/switch-to-webview.ts';
 import type { PurchaseScenario } from '@data/purchase-scenario.ts';
 import { appId } from '@config/test-settings.ts';
 
@@ -27,9 +26,11 @@ export async function openEventDetails({
   console.log('Public event: waiting for event details to render.');
   await iosEventDetailsPage.waitForEvent(scenario.eventName);
   await capture('event-open');
-  const webview = (await browser.getContexts()).map(contextId).find((id) => id?.startsWith('WEBVIEW_'));
-  assert.ok(webview, `${scenario.eventName} must expose an inspectable WebView`);
-  await browser.switchContext(webview);
+  const expected = new URL(scenario.eventUrl);
+  const webview = await switchToWebview(browser, {
+    matchesUrl: (url) => url.origin === expected.origin && url.pathname === expected.pathname,
+    description: 'the expected event page',
+  });
   await eventWebviewPage.waitForEvent(scenario.eventUrl);
   return webview;
 }

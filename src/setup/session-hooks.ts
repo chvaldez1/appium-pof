@@ -12,17 +12,22 @@ export function createSessionHooks({
   target,
   output,
   sensitiveRun,
+  deferSystemPrompts = false,
 }: {
   target: string;
   output: string;
   sensitiveRun: boolean;
+  deferSystemPrompts?: boolean;
 }): Pick<WebdriverIO.Config, 'before' | 'afterTest'> {
   return {
     before: async function () {
       if (target === 'ios-app') {
         verifyIosAppBuild({ udid: requiredSetting('IOS_UDID', target) });
-        await dismissOptionalLocationPrompt();
-        await dismissOptionalNotificationPrompt();
+        // Organizer readiness waits handle prompts without two fixed grace windows.
+        if (!deferSystemPrompts) {
+          await dismissOptionalLocationPrompt();
+          await dismissOptionalNotificationPrompt();
+        }
       }
       writeFileSync(
         resolve(output, 'session.json'),

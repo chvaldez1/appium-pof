@@ -34,7 +34,14 @@ void test('root and platform configs preserve discovery, capabilities, and sensi
     mkdirSync(app);
     writeFileSync(apk, '');
     const cases = [
-      { file: 'wdio.conf.ts', target: 'desktop-safari', app, driver: 'Safari', spec: e2eSpecs.safariSmoke },
+      {
+        file: 'wdio.conf.ts',
+        target: 'desktop-safari',
+        app,
+        driver: 'Safari',
+        spec: e2eSpecs.safariSmoke,
+        directRun: true,
+      },
       {
         file: 'config/wdio.safari.conf.ts',
         target: 'ios-safari',
@@ -55,6 +62,7 @@ void test('root and platform configs preserve discovery, capabilities, and sensi
         app: apk,
         driver: 'UiAutomator2',
         spec: e2eSpecs.webviewSmoke,
+        directRun: true,
       },
       {
         file: 'wdio.conf.ts',
@@ -62,6 +70,8 @@ void test('root and platform configs preserve discovery, capabilities, and sensi
         app: apk,
         driver: 'UiAutomator2',
         spec: e2eSpecs.appSmoke,
+        directRun: true,
+        reuseInstalled: true,
       },
     ];
     for (const scenario of cases) {
@@ -81,13 +91,13 @@ void test('root and platform configs preserve discovery, capabilities, and sensi
             APPIUM_ARTIFACT_DIR: temporary,
             APPIUM_SESSION_ARTIFACT_DIR: temporary,
             APPIUM_SERVER: 'managed',
-            APP_PATH: scenario.app,
+            APP_PATH: scenario.reuseInstalled ? '/missing.apk' : scenario.app,
             APP_ID: 'test.harness',
             IOS_UDID: 'test-ios-device',
             ANDROID_SERIAL: 'test-android-device',
             RESET_APP: '1',
-            REUSE_INSTALLED_APP: '0',
-            PURCHASE_RUN: '1',
+            REUSE_INSTALLED_APP: scenario.reuseInstalled ? '1' : '0',
+            PURCHASE_RUN: scenario.directRun ? '0' : '1',
             ORGANIZER_NAVIGATION_RUN: '0',
             BUYER_NAVIGATION_RUN: '0',
           },
@@ -103,9 +113,14 @@ void test('root and platform configs preserve discovery, capabilities, and sensi
       assert.equal(result.capabilities[0]['appium:automationName'], scenario.driver);
       assert.equal(result.maxInstances, 1);
       assert.equal(result.connectionRetryCount, 0);
-      assert.equal(result.logLevel, 'error');
-      assert.equal(result.mochaTimeout, 600_000);
-      assert.equal(result.serverArgs.config, './config/appium-sensitive.json');
+      const protectedRun = scenario.target !== 'desktop-safari';
+      assert.equal(result.logLevel, protectedRun ? 'silent' : 'info');
+      assert.equal(result.mochaTimeout, scenario.directRun ? 240_000 : 600_000);
+      assert.equal(result.serverArgs.config, protectedRun ? './config/appium-sensitive.json' : undefined);
+      if (scenario.reuseInstalled) {
+        assert.equal(result.capabilities[0]['appium:app'], undefined);
+        assert.equal(result.capabilities[0]['appium:appPackage'], 'test.harness');
+      }
       if (scenario.target.endsWith('-webview')) {
         assert.equal(result.capabilities[0]['appium:noReset'], false);
         assert.equal(result.capabilities[0]['appium:autoWebview'], false);

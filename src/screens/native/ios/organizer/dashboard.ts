@@ -1,4 +1,3 @@
-import assert from 'node:assert/strict';
 import { $, browser } from '@wdio/globals';
 import { timeoutMs } from '@config/test-settings.ts';
 import { type OrganizerDestination } from '@data/static/organizer-navigation.ts';
@@ -23,22 +22,26 @@ class OrganizerDashboardPage {
     return $(`~${tileAccessibilityNames[label]}`);
   }
 
+  screen(destination: OrganizerDestination) {
+    return $(`~${destination.screen}`);
+  }
+
+  content(destination: OrganizerDestination) {
+    if (!destination.content) throw new Error('This destination has no content marker.');
+    return $(`~${destination.tile === 'Check in' ? 'Events Events' : destination.content}`);
+  }
+
   async open(destination: OrganizerDestination): Promise<void> {
     for (let attempt = 0; attempt < 5 && !(await this.tile(destination.tile).isDisplayed()); attempt += 1) {
       await browser.execute('mobile: scroll', { direction: 'down' });
     }
-    assert.ok(
-      await this.tile(destination.tile).isDisplayed(),
-      `${destination.tile} is absent or inaccessible on the dashboard.`,
-    );
+    await this.tile(destination.tile).waitForDisplayed({ timeout: timeoutMs.uiControl });
     await this.tile(destination.neighbor).waitForDisplayed({ timeout: timeoutMs.uiControl });
     await this.tile(destination.tile).click();
-    await this.tile(destination.neighbor).waitForExist({ reverse: true, timeout: timeoutMs.uiNavigation });
-    await $(`~${destination.screen}`).waitForDisplayed({ timeout: timeoutMs.uiNavigation });
-    if (destination.content) {
-      const contentName = destination.tile === 'Check in' ? 'Events Events' : destination.content;
-      await $(`~${contentName}`).waitForDisplayed({ timeout: timeoutMs.pageLoad });
-    }
+    await this.tile(destination.neighbor).waitForDisplayed({
+      reverse: true,
+      timeout: timeoutMs.uiNavigation,
+    });
   }
 }
 

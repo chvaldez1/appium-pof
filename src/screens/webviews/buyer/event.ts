@@ -1,4 +1,3 @@
-import assert from 'node:assert/strict';
 import { $, browser } from '@wdio/globals';
 import { timeoutMs } from '@config/test-settings.ts';
 
@@ -10,7 +9,15 @@ class EventWebviewPage {
   }
 
   async waitForEvent(eventUrl: string): Promise<void> {
-    assert.ok((await browser.getUrl()).startsWith(eventUrl));
+    const expected = new URL(eventUrl);
+    await browser.waitUntil(
+      async () => {
+        const actual = new URL(await browser.getUrl());
+        return actual.origin === expected.origin && actual.pathname === expected.pathname;
+      },
+      { timeout: timeoutMs.pageLoad, timeoutMsg: 'The expected event URL did not load.' },
+    );
+    await this.buyTickets.waitForDisplayed({ timeout: timeoutMs.pageLoad });
   }
 
   async openTicketPicker(): Promise<void> {

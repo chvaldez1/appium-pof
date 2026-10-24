@@ -1,27 +1,16 @@
 import { browser } from '@wdio/globals';
-import { timeoutMs } from '@config/test-settings.ts';
-import { contextId } from '@support/contexts/context-id.ts';
+import { baseURL } from '@config/test-settings.ts';
+import { switchToWebview } from '@support/contexts/switch-to-webview.ts';
 import { buyerAccountWebviewPage } from '@screens/webviews/buyer/account.ts';
 
 export async function waitForAccountWebview(path: string): Promise<void> {
-  await browser.waitUntil(
-    async () => {
-      const contexts = (await browser.getContexts())
-        .map(contextId)
-        .filter((id) => id?.startsWith('WEBVIEW_'));
-      for (const context of contexts) {
-        if (!context) continue;
-        try {
-          await browser.switchContext(context);
-          if (await buyerAccountWebviewPage.isRenderedAtPath(path)) return true;
-        } catch {
-          // A WebView can disappear while changing tabs. Try the next live context.
-        } finally {
-          await browser.switchContext('NATIVE_APP');
-        }
-      }
-      return false;
-    },
-    { timeout: timeoutMs.webviewDiscovery, timeoutMsg: `The ${path} WebView did not render.` },
-  );
+  try {
+    await switchToWebview(browser, {
+      matchesUrl: (url) => url.origin === new URL(baseURL).origin && url.pathname === path,
+      isReady: () => buyerAccountWebviewPage.isRenderedAtPath(path),
+      description: 'the expected account page',
+    });
+  } finally {
+    await browser.switchContext('NATIVE_APP');
+  }
 }

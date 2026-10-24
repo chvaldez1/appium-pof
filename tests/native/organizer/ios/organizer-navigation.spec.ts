@@ -1,8 +1,8 @@
-import { browser } from '@wdio/globals';
+import { browser, expect } from '@wdio/globals';
 import { openOrganizerDashboard } from '@flows/organizer/ios/open-dashboard.ts';
 import { organizerDashboardPage } from '@screens/native/ios/organizer/dashboard.ts';
 import { organizerDestinations } from '@data/static/organizer-navigation.ts';
-import { appId } from '@config/test-settings.ts';
+import { appId, timeoutMs } from '@config/test-settings.ts';
 
 describe('iPhone organizer dashboard navigation', () => {
   let firstDestination = true;
@@ -23,6 +23,12 @@ describe('iPhone organizer dashboard navigation', () => {
   for (const destination of organizerDestinations) {
     it(`opens ${destination.tile} and renders its screen`, async () => {
       await organizerDashboardPage.open(destination);
+      await expect(organizerDashboardPage.screen(destination)).toBeDisplayed({
+        wait: timeoutMs.uiNavigation,
+      });
+      if (destination.content) {
+        await expect(organizerDashboardPage.content(destination)).toBeDisplayed({ wait: timeoutMs.pageLoad });
+      }
     });
   }
 });

@@ -14,6 +14,7 @@
 - Use typed objects for fixed fixtures and a small function for values generated per run. Do not add a factory class for static data.
 - Load local settings through `config/local-env.ts`; keep `.env.local` ignored and preserve shell/CI overrides. Do not commit device UUIDs or private accounts.
 - Keep Xcode simulator signing enabled so the executable embeds Keychain entitlements. Do not replace it with a plain unsigned build plus post-build signing, and never use simulator signing instructions for a physical device build.
+- Do not change frontend application logic or bypass CAPTCHA to make an E2E test pass. Record the build and test-environment switch state; application changes require a separate explicit request.
 
 ## Local resource use
 
